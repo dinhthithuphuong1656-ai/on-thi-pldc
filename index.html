@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ôn thi Pháp luật đại cương cùng Bé Mèo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#FFE9F3; --bg2:#F1ECFF;
+  --card:#FFFFFF; --ink:#4A3557; --ink-soft:#86749A; --line:#F2D9E7;
+  --pink:#D9407F; --pink-dark:#A92E62; --pink-soft:#FFD3E6;
+  --lav:#8C6BEA; --lav-dark:#6A4CC4; --lav-soft:#ECE5FF;
+  --ok:#25A863; --ok-bg:#DBF6E6; --no:#EE4B57; --no-bg:#FFE0E2;
+  --t0:#FFBCD8; --t0d:#EE8DB7; --t1:#B2DEFF; --t1d:#79BDEE; --t2:#BDF0CF; --t2d:#7ED59E; --t3:#FFE6A3; --t3d:#EEC45A;
+  --focus:#8C6BEA;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{background:var(--bg1);scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.5;
+  background:radial-gradient(circle at 1px 1px,rgba(217,64,127,.11) 1.3px,transparent 1.7px) 0 0/22px 22px,linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 100%);background-color:var(--bg1)}
+button,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 56px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.display{font-family:"Baloo 2","Nunito",system-ui,sans-serif}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border:0;border-radius:999px;font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;font-size:1.0625rem;line-height:1.2;cursor:pointer;transition:transform .08s}
+.btn.primary{background:var(--pink);color:#fff;box-shadow:0 5px 0 var(--pink-dark)}
+.btn.soft{background:#fff;color:var(--ink);box-shadow:0 4px 0 var(--line)}
+.btn:active:not(:disabled){transform:translateY(3px)}
+.btn.primary:active:not(:disabled){box-shadow:0 2px 0 var(--pink-dark)}
+.btn.soft:active:not(:disabled){box-shadow:0 1px 0 var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.link{background:none;border:0;padding:4px 0;color:var(--ink-soft);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-weight:600}
+.armed{color:var(--no)!important}
+
+/* Home */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:center;margin-top:4px}
+.hero-mascot{grid-row:span 2}
+.hero-mascot svg{display:block;animation:bob 2.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-5px) rotate(2deg)}}
+.bubble{justify-self:start;position:relative;background:#fff;border-radius:16px;padding:8px 14px;font-weight:700;font-size:.9375rem;box-shadow:0 3px 0 var(--line)}
+.bubble::before{content:"";position:absolute;left:-7px;bottom:12px;border:7px solid transparent;border-right-color:#fff;border-left:0}
+.hero h1{margin:0;font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;font-size:clamp(1.75rem,6vw,2.5rem);line-height:1.05;color:var(--pink)}
+.lede{margin:14px 0 0;color:var(--ink-soft);font-weight:600;max-width:52ch}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:.875rem;box-shadow:0 3px 0 var(--line);white-space:nowrap}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+@media (max-width:520px){.quick{grid-template-columns:1fr}}
+.qa{display:flex;align-items:center;gap:12px;text-align:left;padding:14px 16px;border:0;border-radius:22px;cursor:pointer;transition:transform .08s}
+.qa:active:not(:disabled){transform:translateY(3px)}
+.qa:disabled{opacity:.55;cursor:not-allowed}
+.qa.pink{background:var(--pink-soft);box-shadow:0 5px 0 #F2A9C9}
+.qa.lav{background:var(--lav-soft);box-shadow:0 5px 0 #CDBFF6}
+.qa-ico{flex:none;width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.4rem}
+.qa b{display:block;font-family:"Baloo 2","Nunito",sans-serif;font-size:1.125rem;line-height:1.2}
+.qa small{display:block;color:var(--ink-soft);font-weight:600;font-size:.8125rem}
+.switches{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.switch{display:inline-flex;align-items:center;gap:10px;background:#fff;border:0;border-radius:999px;padding:6px 14px 6px 6px;font-weight:700;font-size:.875rem;cursor:pointer;box-shadow:0 3px 0 var(--line)}
+.switch .knob{width:40px;height:24px;border-radius:999px;background:#E6DDE9;position:relative;transition:background .15s}
+.switch .knob::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.15);transition:left .15s}
+.switch[aria-checked="true"] .knob{background:var(--ok)}
+.switch[aria-checked="true"] .knob::after{left:19px}
+h2.sec{font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;font-size:1.375rem;margin:30px 0 12px}
+.chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+@media (max-width:480px){.chapters{grid-template-columns:1fr 1fr;gap:12px}.chap{min-height:168px;padding:12px 12px 14px}.chap-ico{width:40px;height:40px;font-size:1.25rem}.chap-name{font-size:.9375rem}.chap-vi,.chap-meta{font-size:.75rem}}
+.chap{display:flex;flex-direction:column;gap:4px;text-align:left;padding:14px 14px 16px;border:0;border-radius:22px;background:var(--cc);box-shadow:0 5px 0 var(--cd);cursor:pointer;transition:transform .08s;min-height:176px}
+.chap:hover{transform:translateY(-2px)}
+.chap:active{transform:translateY(3px);box-shadow:0 2px 0 var(--cd)}
+.c0{--cc:#FFE0EE;--cd:#F4B4D0}.c1{--cc:#DDF0FF;--cd:#A9D3F3}.c2{--cc:#DCF7E6;--cd:#A6E1BD}.c3{--cc:#FFF2C8;--cd:#F1D987}.c4{--cc:#ECE5FF;--cd:#C9BBF5}.c5{--cc:#FFE7DA;--cd:#F5BFA4}
+.chap-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.chap-ico{width:48px;height:48px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.5rem}
+.chap-no{font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;font-size:.875rem;background:rgba(255,255,255,.75);border-radius:999px;padding:2px 10px}
+.chap-name{font-family:"Baloo 2","Nunito",sans-serif;font-weight:700;font-size:1.0625rem;line-height:1.2}
+.chap-vi{font-size:.8125rem;color:var(--ink-soft);font-weight:600}
+.chap-meta{margin-top:auto;padding-top:8px;font-size:.8125rem;font-weight:700}
+.chap-bar{display:block;height:8px;border-radius:99px;background:rgba(255,255,255,.85);overflow:hidden;margin-top:6px}
+.chap-bar i{display:block;height:100%;background:var(--ok);border-radius:99px}
+details.box{margin-top:30px;background:#fff;border-radius:22px;padding:0 18px;box-shadow:0 4px 0 var(--line)}
+details.box>summary{cursor:pointer;font-family:"Baloo 2","Nunito",sans-serif;font-weight:700;font-size:1.0625rem;padding:14px 0}
+details.box[open]{padding-bottom:16px}
+details.box p{margin:0 0 10px;font-size:.9375rem}
+pre.sample{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.8125rem;line-height:1.55;background:#FFF7FB;border:1px dashed #F2B6D0;padding:12px 14px;border-radius:12px;overflow-x:auto;margin:0 0 12px}
+textarea{display:block;width:100%;min-height:150px;padding:12px;border:2px solid var(--line);border-radius:14px;background:#FFFBFD;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.875rem;line-height:1.5;resize:vertical;margin-bottom:10px}
+.msg{font-size:.9375rem;font-weight:700;margin:10px 0 0}
+.msg.ok{color:var(--ok)}.msg.err{color:var(--no)}
+.hint{color:var(--ink-soft);font-size:.875rem;font-weight:600;margin:8px 0 0}
+footer.foot{margin-top:28px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px}
+footer.foot .hint{margin:0;max-width:46ch}
+
+/* Game */
+.topbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.topbar .spacer{flex:1}
+.icon-btn{flex:none;width:42px;height:42px;border-radius:50%;border:0;background:#fff;box-shadow:0 3px 0 var(--line);font-size:1.125rem;cursor:pointer;display:grid;place-items:center}
+.icon-btn.armed{width:auto;padding:0 14px;border-radius:999px;font-size:.9375rem;font-weight:800}
+.pill.hot{background:#FFF0D6}
+.tbar{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.tbar .track{flex:1;height:12px;background:#fff;border-radius:999px;overflow:hidden;box-shadow:inset 0 0 0 2px var(--line)}
+.tbar .fill{display:block;height:100%;width:100%;border-radius:999px;background:linear-gradient(90deg,var(--lav),var(--pink))}
+.tbar.low .fill{background:var(--no)}
+.tbar b{font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;min-width:2ch;text-align:right;font-variant-numeric:tabular-nums}
+.qcard{position:relative;background:#fff;border-radius:28px;padding:16px 20px 24px;box-shadow:0 6px 0 var(--line);text-align:center}
+.qhead{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px}
+.qhead svg{flex:none}
+.qtopic{font-size:.8125rem;font-weight:700;color:var(--ink-soft);background:#FFF2F8;border-radius:999px;padding:3px 12px}
+.qtext{margin:0 auto;max-width:36ch;font-family:"Baloo 2","Nunito",sans-serif;font-weight:700;font-size:clamp(1.25rem,3.4vw,1.625rem);line-height:1.3}
+.qtext.long{max-width:52ch;font-size:clamp(1.0625rem,2.6vw,1.25rem);line-height:1.4}
+.qtext:focus{outline:none}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+@media (max-width:560px){.tiles{grid-template-columns:1fr;gap:12px}}
+.tile{position:relative;display:flex;align-items:center;gap:12px;min-height:96px;padding:14px 16px 16px;border:0;border-radius:20px;background:var(--tc);box-shadow:0 5px 0 var(--td);color:var(--ink);font-weight:700;font-size:1.0625rem;line-height:1.35;text-align:left;cursor:pointer;transition:transform .08s,opacity .15s}
+@media (max-width:560px){.tile{min-height:64px;font-size:1rem}}
+.tile:hover:not(:disabled){transform:translateY(-2px)}
+.tile:active:not(:disabled){transform:translateY(3px);box-shadow:0 2px 0 var(--td)}
+.tile:disabled{cursor:default}
+.t0{--tc:var(--t0);--td:var(--t0d)}.t1{--tc:var(--t1);--td:var(--t1d)}.t2{--tc:var(--t2);--td:var(--t2d)}.t3{--tc:var(--t3);--td:var(--t3d)}
+.tl{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.8);display:grid;place-items:center;font-family:"Baloo 2","Nunito",sans-serif;font-weight:800}
+.tile.is-correct{--tc:var(--ok-bg);--td:var(--ok);outline:3px solid var(--ok)}
+.tile.is-wrong{--tc:var(--no-bg);--td:var(--no);outline:3px solid var(--no);animation:shake .38s}
+.tile.is-dim{opacity:.42}
+.tile.is-picked{outline:4px solid var(--lav);outline-offset:2px}
+.tile.is-picked .tl{background:var(--lav);color:#fff}
+.mark{position:absolute;top:-10px;right:-8px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:1rem;box-shadow:0 3px 0 rgba(74,53,87,.15)}
+.is-correct .mark{background:var(--ok)}.is-wrong .mark{background:var(--no)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.game.answered{padding-bottom:150px}
+.feedback{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fff;border-radius:26px 26px 0 0;border-top:6px solid var(--fb);box-shadow:0 -10px 30px rgba(74,53,87,.14);padding:14px 16px calc(16px + env(safe-area-inset-bottom,0px));animation:up .22s ease-out both}
+.feedback.ok{--fb:var(--ok)}.feedback.no{--fb:var(--no)}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.fb-in{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.fb-in svg{flex:none}
+.fb-text{flex:1;min-width:0}
+.fb-title{margin:0;font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;font-size:1.375rem;line-height:1.1;color:var(--fb)}
+.fb-sub{margin:2px 0 0;font-weight:700;font-size:.9375rem}
+@media (max-width:520px){.fb-in{flex-wrap:wrap}.fb-in .btn{width:100%}}
+.exam-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.dots{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:18px 0}
+.dot{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);background:#fff;font-weight:800;font-size:.8125rem;cursor:pointer}
+.dot.done{background:var(--lav);border-color:var(--lav);color:#fff}
+.dot.cur{outline:3px solid var(--pink);outline-offset:1px}
+.submit-row{display:flex;justify-content:center}
+.kbd{display:none;text-align:center}
+@media (hover:hover) and (pointer:fine){.kbd{display:block}}
+.conf{position:fixed;width:9px;height:13px;border-radius:3px;pointer-events:none;z-index:60;animation:conf .9s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes conf{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r));opacity:0}}
+
+/* Results */
+.result{text-align:center;background:#fff;border-radius:30px;padding:22px 18px 26px;box-shadow:0 6px 0 var(--line)}
+.result svg{display:block;margin:0 auto}
+.stars{margin:6px 0 0;font-size:2.25rem;letter-spacing:.1em;color:#F5B83D;line-height:1}
+.stars .off{color:#EADFEA}
+.r-score{margin:6px 0 0;font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;font-size:clamp(2.25rem,9vw,3.25rem);line-height:1;color:var(--pink)}
+.r-sub{margin:8px auto 0;max-width:44ch;font-weight:700}
+.r-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.r-pills .pill{background:#FFF5FA}
+.r-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}
+.review{margin-top:24px}
+.review h2{font-family:"Baloo 2","Nunito",sans-serif;font-weight:800;font-size:1.25rem;margin:0 0 10px}
+.rev{background:#fff;border-radius:18px;padding:14px 16px;margin-bottom:10px;box-shadow:0 3px 0 var(--line)}
+.rev p{margin:0}
+.rev-q{font-weight:700;margin-bottom:6px!important}
+.rev-a{font-size:.9375rem;font-weight:600}
+.rev-a.no{color:var(--no)}.rev-a.ok{color:var(--ok)}
+.rev-code{font-size:.75rem;color:var(--ink-soft);font-weight:700;margin-bottom:4px!important}
+details.review-right{margin-top:12px}
+details.review-right>summary{cursor:pointer;font-weight:800;padding:8px 0}
+@media (prefers-reduced-motion:reduce){.hero-mascot svg,.tile.is-wrong,.feedback{animation:none}.conf{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap"><main id="app"></main></div>
+<script>
+(function(){
+'use strict';
+
+const BANK = [
+  {"id": "S1-01", "c": "S1-01", "t": "1. Meaning and basic concepts of law", "q": "What is a law?", "o": ["Rules and regulations made and enforced by the government that regulate the behavior of people in a society", "Rules that tell you only what not to do", "A series of suggestions people should follow", "Regulations made only by a leader of a country which tell the citizens to obey him/her and only him/her"], "a": 0, "e": ""},
+  {"id": "S1-02", "c": "S1-02", "t": "1. Meaning and basic concepts of law", "q": "What is the main purpose of law in society?", "o": ["To control everyone’s personal opinions", "To maintain order and protect people’s rights", "To prevent all changes in society", "To make everyone have the same lifestyle"], "a": 1, "e": ""},
+  {"id": "S1-03", "c": "S1-03", "t": "1. Meaning and basic concepts of law", "q": "Which statement about law is correct?", "o": ["Following the law is always optional", "Law applies only to government officials", "Law can require people to do or not do certain things", "Law is the same as personal advice"], "a": 2, "e": ""},
+  {"id": "S1-04", "c": "S1-04", "t": "1. Meaning and basic concepts of law", "q": "Which example shows a legal rule?", "o": ["Drivers must stop at a red traffic light", "Friends should reply to messages quickly", "People should give birthday presents", "Guests should thank their hosts"], "a": 0, "e": ""},
+  {"id": "S1-05", "c": "S1-05", "t": "1. Meaning and basic concepts of law", "q": "How can law help people resolve a dispute?", "o": ["By allowing the stronger person to decide", "By requiring them to ignore the problem", "By preventing both sides from explaining their views", "By providing legal procedures for reaching a solution"], "a": 3, "e": ""},
+  {"id": "S1-06", "c": "S1-06", "t": "1. Meaning and basic concepts of law", "q": "Which statement best describes the relationship between law and morality?", "o": ["They can overlap, but legal validity and moral approval are distinct questions", "Every immoral act is necessarily a criminal offence", "Every valid law is accepted as morally right by everyone", "Moral disagreement automatically repeals a statute"], "a": 0, "e": ""},
+  {"id": "S1-07", "c": "S1-07", "t": "1. Meaning and basic concepts of law", "q": "Which function of law most directly concerns settling disagreements over rights and obligations?", "o": ["Recording public holidays only", "Replacing every private decision", "Providing procedures and remedies for resolving disputes", "Guaranteeing that disagreements never arise"], "a": 2, "e": ""},
+  {"id": "S1-08", "c": "S1-08", "t": "1. Meaning and basic concepts of law", "q": "Which function of law concerns defining the powers and limits of public institutions?", "o": ["Determining each citizen’s personal preferences", "Eliminating the need for public accountability", "Requiring all institutions to perform identical tasks", "Structuring and controlling public power"], "a": 3, "e": ""},
+  {"id": "S1-09", "c": "S1-09", "t": "1. Meaning and basic concepts of law", "q": "Which example best illustrates law promoting socially desirable behaviour?", "o": ["A legal incentive encouraging compliance with environmental standards", "A judge choosing cases according to personal friendship", "An official applying a secret rule", "A party ignoring an enforceable obligation"], "a": 0, "e": ""},
+  {"id": "S1-10", "c": "S1-10", "t": "1. Meaning and basic concepts of law", "q": "Which field primarily defines offences and the punishments attached to them?", "o": ["Property law", "Criminal law", "Contract law", "Succession law"], "a": 1, "e": ""},
+  {"id": "S1-11", "c": "S1-11", "t": "1. Meaning and basic concepts of law", "q": "In the civil–criminal distinction, civil law primarily concerns:", "o": ["The prosecution of every breach of a moral duty", "Only the election of public officials", "Private rights and obligations and remedies for their infringement", "Only offences against national security"], "a": 2, "e": ""},
+  {"id": "S1-12", "c": "S1-12", "t": "1. Meaning and basic concepts of law", "q": "In an ordinary private civil lawsuit, the person bringing the claim is commonly called the:", "o": ["Prosecutor", "Accused", "Legislator", "Plaintiff or claimant"], "a": 3, "e": ""},
+  {"id": "S1-13", "c": "S1-13", "t": "1. Meaning and basic concepts of law", "q": "Which remedy generally requires a party to compensate another for proven loss?", "o": ["Damages", "Imprisonment", "A criminal conviction", "Disqualification from voting"], "a": 0, "e": ""},
+  {"id": "S1-14", "c": "S1-14", "t": "1. Meaning and basic concepts of law", "q": "What does domestic or national law generally refer to?", "o": ["Only rules governing relations between states", "The law operating within a particular state", "Only rules of international organizations", "Private moral beliefs shared across borders"], "a": 1, "e": ""},
+  {"id": "S1-15", "c": "S1-15", "t": "1. Meaning and basic concepts of law", "q": "Which topic most clearly belongs to public international law?", "o": ["A neighbour’s ordinary property boundary dispute", "A shop’s internal staff rota", "Treaty obligations between states", "The terms of a local household sale"], "a": 2, "e": ""},
+  {"id": "S1-16", "c": "S1-16", "t": "1. Meaning and basic concepts of law", "q": "Which field is commonly classified as public law?", "o": ["Ordinary private succession law", "A contract for a household purchase", "Private ownership between individuals", "Constitutional law governing state institutions"], "a": 3, "e": ""},
+  {"id": "S1-17", "c": "S1-17", "t": "1. Meaning and basic concepts of law", "q": "Which statement is an example of a substantive legal rule?", "o": ["A rule defining the rights and duties of parties to a contract", "A rule fixing the deadline for filing an appeal", "A rule specifying how to serve court documents", "A rule governing the order of witnesses at trial"], "a": 0, "e": ""},
+  {"id": "S1-18", "c": "S1-18", "t": "1. Meaning and basic concepts of law", "q": "What is the principal focus of procedural law?", "o": ["Whether a particular moral belief is popular", "The processes through which legal rights and duties are enforced", "Only the ownership of intangible assets", "The substantive definition of every criminal offence"], "a": 1, "e": ""},
+  {"id": "S2-01", "c": "S2-01", "t": "2. Source of law", "q": "What is meant by a “source of law”?", "o": ["Only the historical origin of a legal system", "A recognized form or authority from which legal rules derive their legal validity", "Any social practice followed by a community", "Any opinion expressed by a judge"], "a": 1, "e": ""},
+  {"id": "S2-02", "c": "S2-02", "t": "2. Source of law", "q": "Which of the following is an example of legislation?", "o": ["A social custom followed for many generations", "An academic article discussing criminal law", "An Act passed by Parliament", "A private agreement between two individuals"], "a": 2, "e": ""},
+  {"id": "S2-03", "c": "S2-03", "t": "2. Source of law", "q": "What is the main difference between legislation and judicial precedent?", "o": ["Legislation is created by the legislature, while precedent develops through judicial decisions", "Legislation applies only to criminal cases, while precedent applies only to civil cases", "Legislation is always unwritten, while precedent is always written", "There is no significant difference between them"], "a": 0, "e": ""},
+  {"id": "S2-04", "c": "S2-04", "t": "2. Source of law", "q": "When can a social custom become customary law?", "o": ["Whenever a large number of people follow it", "When it has existed for at least ten years", "When it is recognized by the legal system as having legal force", "When it is written down by members of the community"], "a": 2, "e": ""},
+  {"id": "S2-05", "c": "S2-05", "t": "2. Source of law", "q": "Which statement best describes judicial precedent?", "o": ["Parliament creates a general rule that courts must apply", "A legal principle established in a previous judicial decision may guide or bind courts in later similar cases", "Judges are free to ignore all previous judicial decisions", "A precedent is a custom that has been practiced for a long period"], "a": 1, "e": ""},
+  {"id": "S2-06", "c": "S2-06", "t": "2. Source of law", "q": "What is secondary legislation?", "o": ["Legislation that is less important and can therefore be ignored", "Law made by courts when deciding cases", "Law made under powers delegated by primary legislation", "Old legislation that is no longer in force"], "a": 2, "e": ""},
+  {"id": "S2-07", "c": "S2-07", "t": "2. Source of law", "q": "In John Austin’s command theory of law, what is the role of the “sovereign”?", "o": ["The sovereign interprets customs but cannot create law", "The sovereign is the ultimate political authority whose commands, backed by sanctions, constitute positive law", "The sovereign refers only to the judiciary", "The sovereign must always be an elected parliament"], "a": 1, "e": ""},
+  {"id": "S2-08", "c": "S2-08", "t": "2. Source of law", "q": "Which part of a common law judgment normally contains the legal rule necessary for the decision?", "o": ["The names of the parties", "Every observation made by the judge", "The ratio decidendi", "The procedural timetable"], "a": 2, "e": ""},
+  {"id": "S2-09", "c": "S2-09", "t": "2. Source of law", "q": "What is an obiter dictum?", "o": ["A rule enacted by the legislature", "A binding order made by a minister", "A constitutional amendment", "A judicial observation not necessary to decide the case"], "a": 3, "e": ""},
+  {"id": "S2-10", "c": "S2-10", "t": "2. Source of law", "q": "In a common law court hierarchy, which earlier decision will ordinarily bind a lower court in a materially similar case?", "o": ["A relevant decision of a higher court in the same hierarchy", "A decision of any foreign court", "An academic commentary on an unrelated judgment", "A newspaper summary of a trial"], "a": 0, "e": ""},
+  {"id": "S2-11", "c": "S2-11", "t": "2. Source of law", "q": "What does it mean for a court to distinguish an earlier case?", "o": ["To repeal the statute applied in that case", "To explain that material differences make the earlier rule inapplicable", "To transfer the dispute to the legislature", "To declare that no judicial decisions can be used"], "a": 1, "e": ""},
+  {"id": "S2-12", "c": "S2-12", "t": "2. Source of law", "q": "Which statement best describes persuasive authority?", "o": ["A rule that automatically repeals conflicting legislation", "A source that binds every court in every country", "A source a court may consider but is not legally required to follow", "A source that can never affect legal reasoning"], "a": 2, "e": ""},
+  {"id": "S2-13", "c": "S2-13", "t": "2. Source of law", "q": "In the UK, what is the legal status of a Bill that has been introduced but has not completed the enactment process?", "o": ["It is already an Act of Parliament", "It is binding customary law", "It is a judicial precedent", "It is proposed legislation rather than an enacted Act"], "a": 3, "e": ""},
+  {"id": "S2-14", "c": "S2-14", "t": "2. Source of law", "q": "Why do lawyers check whether a statute has been amended?", "o": ["To identify the version applicable to the relevant issue and time", "To replace its text with academic opinion", "To establish that all earlier versions were unlawful", "To show that judicial decisions are unnecessary"], "a": 0, "e": ""},
+  {"id": "S2-15", "c": "S2-15", "t": "2. Source of law", "q": "What does express repeal of a statutory provision mean?", "o": ["A court postpones a hearing concerning it", "Later legislation expressly removes its legal force", "An official chooses not to enforce it in one case", "An academic criticizes its wording"], "a": 1, "e": ""},
+  {"id": "S2-16", "c": "S2-16", "t": "2. Source of law", "q": "Under the ordinary UK doctrine of parliamentary sovereignty, what happens when an Act clearly changes a conflicting common law rule?", "o": ["The Act needs approval from every trial judge", "The common law rule always defeats the Act", "The Act governs, subject to its proper interpretation and application", "The common law rule becomes a constitutional amendment"], "a": 2, "e": ""},
+  {"id": "S2-17", "c": "S2-17", "t": "2. Source of law", "q": "Which source normally helps explain the law without itself having binding legal force merely because of its authorship?", "o": ["A valid Act of Parliament", "A binding judgment of a superior court", "A valid regulation made under statutory authority", "A legal textbook written by a scholar"], "a": 3, "e": ""},
+  {"id": "S3-01", "c": "S3-01", "t": "3. Rule of law", "q": "Which statement best describes the Rule of Law?", "o": ["Government officials may act freely whenever they believe it is necessary", "Everyone, including the government, is subject to the law", "Only citizens are required to obey the law", "Courts must follow the decisions of the executive branch"], "a": 1, "e": ""},
+  {"id": "S3-02", "c": "S3-02", "t": "3. Rule of law", "q": "Which of the following is NOT one of the three traditional principles of the Rule of Law?", "o": ["Supremacy of law", "Equality before the law", "Predominance of the legal spirit", "Separation of powers"], "a": 3, "e": ""},
+  {"id": "S3-03", "c": "S3-03", "t": "3. Rule of law", "q": "What is meant by the “supremacy of law”?", "o": ["Parliament may exercise unlimited administrative power", "No person may be punished except for a breach of law established through ordinary legal procedures", "Judges have the power to create any law they consider fair", "Constitutional law is superior to all other forms of law"], "a": 1, "e": ""},
+  {"id": "S3-04", "c": "S3-04", "t": "3. Rule of law", "q": "Which situation best illustrates “equality before the law”?", "o": ["A government minister is exempt from criminal law because of their official position", "Public officials and ordinary citizens are generally subject to the same law administered by ordinary courts", "Government officials are always tried by special courts", "Wealthy citizens receive different legal rights from other citizens"], "a": 1, "e": ""},
+  {"id": "S3-05", "c": "S3-05", "t": "3. Rule of law", "q": "“Predominance of the legal spirit” mainly refers to the idea that:", "o": ["constitutional principles and individual rights have developed through judicial decisions in concrete cases", "judges should always have greater power than Parliament", "all constitutional rules must be contained in a single written constitution", "Moral principles should prevail over positive law"], "a": 0, "e": ""},
+  {"id": "S3-06", "c": "S3-06", "t": "3. Rule of law", "q": "A police officer arrests a person simply because the officer dislikes the person’s political opinions. There is no legal basis for the arrest. Which Rule of Law principle is most directly violated?", "o": ["Supremacy of law", "Parliamentary sovereignty", "Federalism", "Separation of religion and state"], "a": 0, "e": ""},
+  {"id": "S3-07", "c": "S3-07", "t": "3. Rule of law", "q": "A new law imposes a criminal penalty for an act that was lawful when a person committed it. Which Rule of Law requirement is most directly concerned?", "o": ["Legal certainty and non-retroactivity", "Judicial independence", "Equality before the law", "Majority rule"], "a": 0, "e": ""},
+  {"id": "S3-08", "c": "S3-08", "t": "3. Rule of law", "q": "Why is judicial independence important to the Rule of Law?", "o": ["It allows judges to ignore legislation", "It enables courts to apply the law impartially without improper interference from other actors", "It gives judges complete control over government policy", "It prevents citizens from challenging government decisions"], "a": 1, "e": ""},
+  {"id": "S3-09", "c": "S3-09", "t": "3. Rule of law", "q": "Which of the following is the BEST example of arbitrary government power?", "o": ["A court sentences a defendant according to a criminal statute", "A tax authority imposes a penalty according to published tax regulations", "A government agency closes a business without any legal authority or established procedure", "Parliament adopts a law after following the required legislative procedure"], "a": 2, "e": ""},
+  {"id": "S3-10", "c": "S3-10", "t": "3. Rule of law", "q": "Which statement best explains the relationship between the Rule of Law and government power?", "o": ["The Rule of Law means that government cannot exercise power", "The Rule of Law requires government power to be exercised according to law and subject to legal constraints", "The Rule of Law requires courts to govern the country", "The Rule of Law means that every government decision must be approved by citizens"], "a": 1, "e": ""},
+  {"id": "S3-11", "c": "S3-11", "t": "3. Rule of law", "q": "Why should legal rules be publicly accessible?", "o": ["So that only government lawyers can interpret them", "So that courts may replace evidence with publicity", "So that people can learn the rules governing their conduct", "So that officials can enforce unpublished exceptions"], "a": 2, "e": ""},
+  {"id": "S3-12", "c": "S3-12", "t": "3. Rule of law", "q": "Which feature most directly supports clarity in legal rules?", "o": ["Issuing contradictory instructions without guidance", "Changing the meaning of a rule secretly", "Leaving prohibited conduct entirely to each official’s preference", "Using wording that affected people can reasonably understand"], "a": 3, "e": ""},
+  {"id": "S3-13", "c": "S3-13", "t": "3. Rule of law", "q": "Why can frequent and unpredictable changes to legal rules undermine legal certainty?", "o": ["They make it harder for people to plan their conduct under the law", "They remove all need for judicial interpretation", "They prevent the legislature from considering public concerns", "They necessarily make every new rule invalid"], "a": 0, "e": ""},
+  {"id": "S3-14", "c": "S3-14", "t": "3. Rule of law", "q": "Which arrangement most directly promotes access to justice?", "o": ["Allowing only public officials to bring legal claims", "Providing practical access to legal advice and appropriate dispute-resolution procedures", "Making every government decision immune from review", "Requiring political approval before every civil claim"], "a": 1, "e": ""},
+  {"id": "S3-15", "c": "S3-15", "t": "3. Rule of law", "q": "A judge has a personal financial interest in the outcome of a dispute. Which requirement is most directly at risk?", "o": ["Territorial sovereignty", "Parliamentary privilege", "Judicial impartiality", "The publicity of legislation"], "a": 2, "e": ""},
+  {"id": "S3-16", "c": "S3-16", "t": "3. Rule of law", "q": "Which procedure best supports a fair hearing before a public authority makes an adverse decision?", "o": ["Relying on a secret allegation that cannot be answered", "Deciding the case before receiving any submissions", "Treating the official’s preference as conclusive evidence", "Giving the affected person a meaningful opportunity to know and answer the case"], "a": 3, "e": ""},
+  {"id": "S3-17", "c": "S3-17", "t": "3. Rule of law", "q": "Which statement best distinguishes the Rule of Law from mere rule by law?", "o": ["The Rule of Law also requires legal constraints on those exercising public power", "Any written rule necessarily protects fundamental rights", "Rule by law always requires independent judicial review", "The Rule of Law permits officials to disregard legal procedures"], "a": 0, "e": ""},
+  {"id": "S4-01", "c": "S4-01", "t": "4. Legal system", "q": "Which of the following is an important element used to distinguish one legal system from another?", "o": ["The size of the country", "Sources of law", "The number of citizens", "The official language of the country"], "a": 1, "e": ""},
+  {"id": "S4-02", "c": "S4-02", "t": "4. Legal system", "q": "Which statement BEST describes the traditional difference between Civil Law and Common Law systems?", "o": ["Civil Law relies exclusively on legislation, while Common Law has no legislation", "Civil Law places greater emphasis on legislation, while Common Law gives a broader role to case law", "Civil Law is based on religion, while Common Law is not", "Common Law does not recognise statutes"], "a": 1, "e": ""},
+  {"id": "S4-03", "c": "S4-03", "t": "4. Legal system", "q": "Which of the following countries is traditionally associated with the Common Law system?", "o": ["France", "Germany", "Australia", "Vietnam"], "a": 2, "e": ""},
+  {"id": "S4-04", "c": "S4-04", "t": "4. Legal system", "q": "In which country did the common law tradition historically develop?", "o": ["France", "England", "Germany", "Italy"], "a": 1, "e": ""},
+  {"id": "S4-05", "c": "S4-05", "t": "4. Legal system", "q": "Which type of reasoning is traditionally associated with Civil Law?", "o": ["Deductive reasoning", "Inductive reasoning", "Mathematical reasoning", "Moral reasoning"], "a": 0, "e": ""},
+  {"id": "S4-06", "c": "S4-06", "t": "4. Legal system", "q": "In the traditional Common Law model, what is the primary role of a judge in an adversarial proceeding?", "o": ["To actively investigate the facts for both parties", "To act as a relatively neutral decision-maker between opposing parties", "To draft legislation for Parliament", "To represent the defendant"], "a": 1, "e": ""},
+  {"id": "S4-07", "c": "S4-07", "t": "4. Legal system", "q": "Which statement BEST describes an inquisitorial system?", "o": ["The judge generally plays a more active role in investigating the case and establishing the facts", "The judge acts only as a neutral referee between the parties", "Only lawyers are permitted to collect evidence", "Previous judicial decisions are always the main source of law"], "a": 0, "e": ""},
+  {"id": "S4-08", "c": "S4-08", "t": "4. Legal system", "q": "A court is deciding a new case. Instead of relying mainly on a comprehensive legal code, it examines decisions from earlier similar cases and derives a legal principle from them. This approach is MOST characteristic of:", "o": ["Civil Law", "Common Law", "Islamic Law", "Socialist Law"], "a": 1, "e": ""},
+  {"id": "S4-09", "c": "S4-09", "t": "4. Legal system", "q": "Which legal tradition is historically most closely associated with Roman law and comprehensive codification?", "o": ["The common law tradition", "The civil law tradition", "A system based exclusively on religious doctrine", "A system without written legal rules"], "a": 1, "e": ""},
+  {"id": "S4-10", "c": "S4-10", "t": "4. Legal system", "q": "Which description best captures a legal code in the civil law tradition?", "o": ["A collection of press reports about court decisions", "An informal agreement among judges", "An organized legislative statement of rules governing a field of law", "A list of customs with no recognized legal effect"], "a": 2, "e": ""},
+  {"id": "S4-11", "c": "S4-11", "t": "4. Legal system", "q": "In comparative law, a mixed legal system generally combines:", "o": ["The legislature and judiciary into a single institution", "Only civil and criminal offences in one court", "Two official languages in every statute", "Significant elements of more than one legal tradition"], "a": 3, "e": ""},
+  {"id": "S4-12", "c": "S4-12", "t": "4. Legal system", "q": "Which statement about legislation in common law systems is accurate?", "o": ["Legislation is an important source of law alongside judicial decisions", "Only courts may create binding legal rules", "Legislation is legally irrelevant once a precedent exists", "Statutes can govern procedure but never substantive rights"], "a": 0, "e": ""},
+  {"id": "S4-13", "c": "S4-13", "t": "4. Legal system", "q": "What does inductive legal reasoning generally involve?", "o": ["Applying a general code provision to a specific set of facts", "Developing a broader principle from particular decided cases", "Ignoring similarities between earlier decisions", "Treating a political statement as an enacted statute"], "a": 1, "e": ""},
+  {"id": "S4-14", "c": "S4-14", "t": "4. Legal system", "q": "Which statement about judges in civil law systems is most accurate?", "o": ["They never interpret legal texts", "They decide cases only by public referendum", "They interpret and apply legal rules, even where codes are central", "They have no role in resolving uncertain wording"], "a": 2, "e": ""},
+  {"id": "S4-15", "c": "S4-15", "t": "4. Legal system", "q": "Which feature is most closely associated with an adversarial model of proceedings?", "o": ["Witnesses cannot be questioned by either side", "The judge acts as counsel for both parties", "The legislature decides the individual dispute", "Opposing parties take a leading role in presenting evidence and arguments"], "a": 3, "e": ""},
+  {"id": "S4-16", "c": "S4-16", "t": "4. Legal system", "q": "What does the term jurisdiction principally describe?", "o": ["A court’s legal authority to hear and determine a matter", "The political popularity of a judgment", "The number of lawyers employed by a court", "The language used in a published statute"], "a": 0, "e": ""},
+  {"id": "S4-17", "c": "S4-17", "t": "4. Legal system", "q": "Why should the common law and civil law distinction be treated as a broad comparative model?", "o": ["Every country follows exactly the same procedural rules", "National systems vary and may combine features of both traditions", "Only common law systems have professional judges", "Civil law systems cannot change over time"], "a": 1, "e": ""},
+  {"id": "S5-01", "c": "S5-01", "t": "5. Forms of government", "q": "Which of the following best describes a government?", "o": ["A group of private companies operating in a country", "An institution or system made up of people governing an organized community", "A political party that wins an election", "A court that interprets laws"], "a": 1, "e": ""},
+  {"id": "S5-02", "c": "S5-02", "t": "5. Forms of government", "q": "According to the lecture, government normally consists of which three branches?", "o": ["Legislature, executive, and judiciary", "Parliament, political parties, and citizens", "President, military, and courts", "Central government, local government, and political parties"], "a": 0, "e": ""},
+  {"id": "S5-03", "c": "S5-03", "t": "5. Forms of government", "q": "Which two criteria can be used to distinguish different forms of government?", "o": ["Population and territory", "Economic system and culture", "Power source and power structure", "Religion and history"], "a": 2, "e": ""},
+  {"id": "S5-04", "c": "S5-04", "t": "5. Forms of government", "q": "The question “Who rules?” mainly refers to:", "o": ["Power structure", "Power source", "Separation of powers", "Decentralization"], "a": 1, "e": ""},
+  {"id": "S5-05", "c": "S5-05", "t": "5. Forms of government", "q": "Which form of government places political power in the people?", "o": ["Monarchy", "Oligarchy", "Democracy", "Dictatorship"], "a": 2, "e": ""},
+  {"id": "S5-06", "c": "S5-06", "t": "5. Forms of government", "q": "Which statement best describes a democracy?", "o": ["The monarch makes all important political decisions", "Political power belongs to a small group of people", "Leaders are elected by the people, and power is exercised directly or through representatives", "Political power is inherited within a family"], "a": 2, "e": ""},
+  {"id": "S5-07", "c": "S5-07", "t": "5. Forms of government", "q": "In a direct democracy, citizens:", "o": ["Exercise political power directly", "Transfer all political power to a monarch", "Are governed by judges", "Do not participate in political decisions"], "a": 0, "e": ""},
+  {"id": "S5-08", "c": "S5-08", "t": "5. Forms of government", "q": "Which statement about a republic is correct?", "o": ["Every republic is necessarily democratic", "A republic must have a king or queen", "The head of state is not a hereditary monarch and is selected under the constitutional rules", "The head of state always holds office for life"], "a": 2, "e": ""},
+  {"id": "S5-09", "c": "S5-09", "t": "5. Forms of government", "q": "Why are “republic” and “democracy” NOT identical concepts?", "o": ["A republic never holds elections", "Some republics may not operate democratically", "Democracy always requires a monarch", "Republics do not have governments"], "a": 1, "e": ""},
+  {"id": "S5-10", "c": "S5-10", "t": "5. Forms of government", "q": "Which feature best distinguishes a presidential system from a parliamentary system?", "o": ["The head of state inherits office", "The executive has a separate constitutional mandate and does not depend on ordinary parliamentary confidence to remain in office", "The prime minister is necessarily the head of state", "The cabinet remains in office only while it has parliamentary confidence"], "a": 1, "e": ""},
+  {"id": "S5-11", "c": "S5-11", "t": "5. Forms of government", "q": "Which country is an example of a presidential republic?", "o": ["France", "Germany", "United States", "United Kingdom"], "a": 2, "e": ""},
+  {"id": "S5-12", "c": "S5-12", "t": "5. Forms of government", "q": "In a parliamentary republic, the executive:", "o": ["Derives its power from parliament and is accountable to parliament", "Is completely separate from parliament", "Is headed by a hereditary monarch", "Is directly elected by the people in all cases"], "a": 0, "e": ""},
+  {"id": "S5-13", "c": "S5-13", "t": "5. Forms of government", "q": "A country has a popularly elected president with meaningful constitutional powers and a prime minister whose cabinet is responsible to parliament. Which system best describes it?", "o": ["Presidential republic", "Parliamentary republic", "Semi-presidential republic", "Absolute monarchy"], "a": 2, "e": ""},
+  {"id": "S5-14", "c": "S5-14", "t": "5. Forms of government", "q": "Which organizational principle is associated with the classical socialist model of state organization?", "o": ["Strict separation of powers", "Democratic centralism", "Hereditary political leadership", "Absolute power of the monarch"], "a": 1, "e": ""},
+  {"id": "S5-15", "c": "S5-15", "t": "5. Forms of government", "q": "What is the main difference between an absolute monarchy and a constitutional monarchy?", "o": ["Only constitutional monarchies have a monarch", "In an absolute monarchy, the monarch has absolute or very great power; in a constitutional monarchy, the monarch’s powers are restricted by the constitution", "Absolute monarchies always have elected prime ministers", "Constitutional monarchs are directly elected by citizens"], "a": 1, "e": ""},
+  {"id": "S5-16", "c": "S5-16", "t": "5. Forms of government", "q": "In many constitutional monarchies, the king or queen:", "o": ["Makes all laws personally", "Has mainly ceremonial duties", "Controls the judiciary", "Serves as prime minister"], "a": 1, "e": ""},
+  {"id": "S5-17", "c": "S5-17", "t": "5. Forms of government", "q": "Political power is concentrated in a small group of wealthy families and business elites. Which classification best fits this arrangement?", "o": ["Democracy", "Oligarchy", "Constitutional monarchy", "Transitional government"], "a": 1, "e": ""},
+  {"id": "S5-18", "c": "S5-18", "t": "5. Forms of government", "q": "Country X is governed by a religious leader whose authority is based primarily on religion. Which form of government best describes Country X?", "o": ["Oligarchy", "Theocracy", "Republic", "Federalism"], "a": 1, "e": ""},
+  {"id": "S6-01", "c": "S6-01", "t": "6. Constitutional law", "q": "What is a constitution?", "o": ["The fundamental rules organizing a state and its public powers", "An administrative manual for one ministry", "A political party manifesto with no legal function", "A private contract between citizens"], "a": 0, "e": ""},
+  {"id": "S6-02", "c": "S6-02", "t": "6. Constitutional law", "q": "Which statement best describes the constitutional protection of fundamental rights?", "o": ["It allows ordinary officials to remove rights without legal limits", "It provides a legal framework for recognizing and protecting fundamental rights", "It guarantees that no right can ever be limited in any circumstances", "It concerns relations between businesses only"], "a": 1, "e": ""},
+  {"id": "S6-03", "c": "S6-03", "t": "6. Constitutional law", "q": "Under Article 119 of the Vietnamese Constitution, which statement is correct?", "o": ["An ordinary statute may override the Constitution", "Only judicial decisions must comply with the Constitution", "The Constitution has the highest legal effect and all other legal documents must conform to it", "A ministerial circular has the same legal effect as the Constitution"], "a": 2, "e": ""},
+  {"id": "S6-04", "c": "S6-04", "t": "6. Constitutional law", "q": "Under Article 2 of the Vietnamese Constitution, all state power belongs to:", "o": ["The Government alone", "The judiciary alone", "The Communist Party as a state organ", "The People"], "a": 3, "e": ""},
+  {"id": "S6-05", "c": "S6-05", "t": "6. Constitutional law", "q": "Under Article 4 of the Vietnamese Constitution, Party organizations and Party members must operate:", "o": ["Outside the legal framework applicable to public institutions", "Within the framework of the Constitution and law", "Only under internal rules, regardless of the Constitution", "Without supervision by the People"], "a": 1, "e": ""},
+  {"id": "S6-06", "c": "S6-06", "t": "6. Constitutional law", "q": "Which of the following is NOT a main purpose of a constitution?", "o": ["To establish the framework of government", "To protect fundamental rights", "To regulate every daily administrative decision", "To define the powers of state institutions"], "a": 2, "e": ""},
+  {"id": "S6-07", "c": "S6-07", "t": "6. Constitutional law", "q": "What is the central idea of constitutionalism?", "o": ["Public power should be limited and exercised under constitutional rules", "Any government with a written document necessarily has unlimited lawful authority", "The executive may disregard constitutional limits during ordinary administration", "A constitution regulates private conduct but never government power"], "a": 0, "e": ""},
+  {"id": "S6-08", "c": "S6-08", "t": "6. Constitutional law", "q": "Which political philosopher is closely associated with the modern doctrine of separation of powers?", "o": ["John Locke", "Jean-Jacques Rousseau", "Thomas Hobbes", "Montesquieu"], "a": 3, "e": ""},
+  {"id": "S6-09", "c": "S6-09", "t": "6. Constitutional law", "q": "Which branch of government is primarily responsible for enforcing laws?", "o": ["The legislative branch", "The executive branch", "The judicial branch", "The constitutional court"], "a": 1, "e": ""},
+  {"id": "S6-10", "c": "S6-10", "t": "6. Constitutional law", "q": "Under the Vietnamese Constitution, which institution is the highest representative body of the People and the highest body of state power?", "o": ["The Government", "The State President", "The National Assembly", "The People’s Courts"], "a": 2, "e": ""},
+  {"id": "S6-11", "c": "S6-11", "t": "6. Constitutional law", "q": "Under the Vietnamese Constitution, which institution exercises judicial power?", "o": ["The National Assembly", "The Government", "The State President", "The People’s Courts"], "a": 3, "e": ""},
+  {"id": "S6-12", "c": "S6-12", "t": "6. Constitutional law", "q": "What does it mean to describe a constitution as codified?", "o": ["Every rule can be changed by a ministerial instruction", "None of its rules has been written down", "Its principal constitutional rules are collected in a single constitutional document", "It contains all private contracts made in the state"], "a": 2, "e": ""},
+  {"id": "S6-13", "c": "S6-13", "t": "6. Constitutional law", "q": "An uncodified constitution is best understood as one whose rules:", "o": ["Have no legal or political significance", "Are entirely oral and cannot appear in legislation", "Must be applied only by a hereditary monarch", "Are not collected in one comprehensive constitutional document"], "a": 3, "e": ""},
+  {"id": "S6-14", "c": "S6-14", "t": "6. Constitutional law", "q": "What normally distinguishes a rigid constitution from a flexible constitution?", "o": ["A rigid constitution requires a more demanding amendment procedure than ordinary legislation", "A rigid constitution cannot be interpreted by courts", "A flexible constitution contains no rules about government", "A flexible constitution cannot recognize rights"], "a": 0, "e": ""},
+  {"id": "S6-15", "c": "S6-15", "t": "6. Constitutional law", "q": "What is the central purpose of checks and balances in constitutional design?", "o": ["To ensure that one branch exercises every public function", "To allow institutions to restrain or oversee one another’s exercise of power", "To replace legal accountability with political loyalty", "To remove all cooperation between public institutions"], "a": 1, "e": ""},
+  {"id": "S6-16", "c": "S6-16", "t": "6. Constitutional law", "q": "Under Article 2 of the Vietnamese Constitution, how is state power organized?", "o": ["The courts exercise legislative and executive powers exclusively", "Each branch is a separate sovereign state", "It is unified, with assignment, coordination and control among state bodies exercising legislative, executive and judicial powers", "The Government is constitutionally independent of every other state body"], "a": 2, "e": ""},
+  {"id": "S6-17", "c": "S6-17", "t": "6. Constitutional law", "q": "Under Article 14 of the Vietnamese Constitution, which statement about limiting human rights and citizens’ rights is correct?", "o": ["Any administrative instruction may restrict rights for convenience", "Rights may never be limited under any circumstances", "An individual official may restrict rights without giving a legal basis", "Restrictions must be prescribed by law and be necessary for the constitutionally specified reasons"], "a": 3, "e": ""},
+  {"id": "S7-01", "c": "S7-01", "t": "7. Civil law part 1", "q": "The term civil law primarily refers to:", "o": ["The branch governing private personal and property relations", "Only a legal tradition originating in continental Europe", "Rules defining crimes and imprisonment only", "The organization of the executive branch only"], "a": 0, "e": ""},
+  {"id": "S7-02", "c": "S7-02", "t": "7. Civil law part 1", "q": "Under the equality principle in civil relations, which statement is correct?", "o": ["A public organization always has superior civil rights because of its status", "The parties participate on an equal legal footing, without status-based discrimination", "A wealthier party may impose obligations without agreement", "Every party must possess identical assets"], "a": 1, "e": ""},
+  {"id": "S7-03", "c": "S7-03", "t": "7. Civil law part 1", "q": "Which principle is most directly undermined when a party is forced to enter a civil transaction?", "o": ["The publicity of court hearings", "The hierarchy of criminal punishments", "Freedom and voluntariness in establishing civil relations", "The nationality principle"], "a": 2, "e": ""},
+  {"id": "S7-04", "c": "S7-04", "t": "7. Civil law part 1", "q": "What does good faith and honesty require in civil relations?", "o": ["A party may conceal every material fact without legal consequences", "A stronger party may deliberately mislead the other party", "Only a written contract requires honest conduct", "Parties should establish and perform civil rights and obligations honestly and in good faith"], "a": 3, "e": ""},
+  {"id": "S7-05", "c": "S7-05", "t": "7. Civil law part 1", "q": "What is the main compensatory purpose of a civil remedy?", "o": ["To restore the injured party, so far as possible, to the position before the harm", "To impose imprisonment whenever loss occurs", "To transfer all of the defendant’s property to the state", "To create a criminal record for every unsuccessful defendant"], "a": 0, "e": ""},
+  {"id": "S7-06", "c": "S7-06", "t": "7. Civil law part 1", "q": "Which description best identifies tort or non-contractual civil liability?", "o": ["Liability arising exclusively from an inheritance tax", "Civil liability for harm that does not depend on breach of a contract between the parties", "A penalty imposed solely for breaching a parliamentary rule", "Only liability for violating an employment contract"], "a": 1, "e": ""},
+  {"id": "S7-07", "c": "S7-07", "t": "7. Civil law part 1", "q": "Which statement best describes the possible relationship between civil and criminal liability for the same harmful conduct?", "o": ["A criminal prosecution always removes the victim’s civil claim", "A civil claim automatically prevents criminal prosecution", "The conduct may give rise to criminal proceedings and a claim for civil compensation", "Civil compensation can be ordered only if the conduct is not criminal"], "a": 2, "e": ""},
+  {"id": "S7-08", "c": "S7-08", "t": "7. Civil law part 1", "q": "Which matter most clearly falls within property law?", "o": ["The procedure for adopting a constitutional amendment", "The age at which criminal liability begins", "The appointment of a country’s prime minister", "The ownership and exercise of rights over assets"], "a": 3, "e": ""},
+  {"id": "S7-09", "c": "S7-09", "t": "7. Civil law part 1", "q": "Lan agrees to pay Minh VND 3 million for his bicycle. Minh hands over the bicycle and transfers ownership to Lan in exchange for the payment. What type of contract is this?", "o": ["A sale contract", "A gift contract", "A lease contract", "A loan contract"], "a": 0, "e": ""},
+  {"id": "S8-01", "c": "S8-01", "t": "8. Civil law part 2", "q": "Under the Civil Code definition, a contract is an agreement intended to:", "o": ["Establish, modify or terminate civil rights and obligations", "Appoint the legislature", "Determine criminal guilt", "Replace the Constitution"], "a": 0, "e": ""},
+  {"id": "S8-02", "c": "S8-02", "t": "8. Civil law part 2", "q": "A company uses a photographer’s picture in an advertisement without her permission. The photographer objects to the use of her work. Which area of law is most directly involved?", "o": ["Contract law", "Succession law", "Intellectual property law", "Marriage and family law"], "a": 2, "e": ""},
+  {"id": "S8-03", "c": "S8-03", "t": "8. Civil law part 2", "q": "Which statement about the form of a civil transaction in Vietnam is correct?", "o": ["Only a handwritten document can create civil obligations", "Every transaction must be notarized", "It may be expressed orally, in writing or by specific conduct, subject to legally required formalities", "Electronic data messages can never count as writing"], "a": 2, "e": ""},
+  {"id": "S8-04", "c": "S8-04", "t": "8. Civil law part 2", "q": "Which statement correctly distinguishes copyright from a general registration requirement?", "o": ["Every literary work must receive a patent before copyright exists", "Copyright always lasts for an unlimited period", "Copyright protects only company logos", "Copyright protection generally arises automatically for an eligible work, without mandatory registration to obtain protection"], "a": 3, "e": ""},
+  {"id": "S8-05", "c": "S8-05", "t": "8. Civil law part 2", "q": "Which statement about a patent is most accurate?", "o": ["It provides time-limited exclusive protection for an invention that satisfies the applicable legal requirements", "It always lasts for the inventor’s lifetime", "It grants ownership of every idea in the same industry", "It gives protection only to a business name"], "a": 0, "e": ""},
+  {"id": "S8-06", "c": "S8-06", "t": "8. Civil law part 2", "q": "What is the principal function of a trademark?", "o": ["To determine who inherits a deceased person’s property", "To distinguish the goods or services of one undertaking from those of others", "To record a marriage", "To protect every abstract scientific idea"], "a": 1, "e": ""},
+  {"id": "S8-07", "c": "S8-07", "t": "8. Civil law part 2", "q": "Which statement best describes testamentary succession?", "o": ["Transfer of property only while the owner is alive", "Distribution that can never involve a written will", "Distribution of an estate under a legally effective will, subject to applicable legal limits", "Distribution decided solely by the employer of the deceased"], "a": 2, "e": ""},
+  {"id": "S8-08", "c": "S8-08", "t": "8. Civil law part 2", "q": "Under Article 651 of Vietnam’s Civil Code, which group belongs to the first order of heirs at law?", "o": ["Only brothers and sisters", "Only the eldest son", "Only paternal and maternal grandparents", "The spouse, biological or adoptive parents, and biological or adopted children of the deceased"], "a": 3, "e": ""},
+  {"id": "S8-09", "c": "S8-09", "t": "8. Civil law part 2", "q": "Which combination reflects the basic marriage principles?", "o": ["Voluntary marriage, monogamy and equality between spouses", "Polygamy and hereditary authority over a spouse", "Forced marriage and unequal rights between spouses", "Marriage imposed solely by an employer"], "a": 0, "e": ""},
+  {"id": "S9-01", "c": "S9-01", "t": "9. Criminal law", "q": "Under the legality principle in Vietnam’s Criminal Code, criminal liability of an individual requires:", "o": ["Commission of an offence defined by the Criminal Code, with the applicable legal conditions satisfied", "Only that an official considers the conduct immoral", "A breach of any private workplace rule", "Only that the conduct is unpopular"], "a": 0, "e": ""},
+  {"id": "S9-02", "c": "S9-02", "t": "9. Criminal law", "q": "Which feature is necessary in the statutory concept of a crime under Article 8?", "o": ["Any conduct that causes disappointment", "Socially dangerous conduct defined as an offence in the Criminal Code", "A disagreement between friends regardless of legal rules", "Any civil debt that remains unpaid"], "a": 1, "e": ""},
+  {"id": "S9-03", "c": "S9-03", "t": "9. Criminal law", "q": "For the ordinary classification of a particular offence under Article 9, which penalty measure is used?", "o": ["The sentence that a newspaper predicts", "The minimum punishment requested by the victim", "The maximum penalty in the applicable statutory penalty bracket", "The amount of civil damages alone"], "a": 2, "e": ""},
+  {"id": "S9-04", "c": "S9-04", "t": "9. Criminal law", "q": "An offence whose applicable statutory imprisonment bracket has a maximum of five years is ordinarily classified as:", "o": ["A less serious crime", "A very serious crime", "An extremely serious crime", "A serious crime"], "a": 3, "e": ""},
+  {"id": "S9-05", "c": "S9-05", "t": "9. Criminal law", "q": "Subject to statutory exceptions and rules on recalculation, what is the ordinary limitation period for prosecution of a less serious crime?", "o": ["Five years", "Three years", "Ten years", "One year"], "a": 0, "e": ""},
+  {"id": "S9-06", "c": "S9-06", "t": "9. Criminal law", "q": "Which description corresponds to direct intention under Article 10?", "o": ["The person cannot and need not foresee any harmful consequence", "The person foresees the harmful consequences and wants them to occur", "The person reasonably prevents all harm", "The act is purely involuntary and contains no fault"], "a": 1, "e": ""},
+  {"id": "S9-07", "c": "S9-07", "t": "9. Criminal law", "q": "Which description corresponds to negligence through failure to foresee under Article 11?", "o": ["The person wants the harmful consequences", "The person foresees the harm and deliberately accepts it", "The person fails to foresee harmful consequences although they should and could have foreseen them", "The person has no legal duty or ability to foresee the event"], "a": 2, "e": ""},
+  {"id": "S9-08", "c": "S9-08", "t": "9. Criminal law", "q": "Under Article 12, which statement about persons aged 14 to under 16 is correct?", "o": ["They bear liability for every offence without exception", "They can never bear criminal liability", "They bear liability only for administrative violations", "They may bear liability for the very serious or extremely serious offences specifically listed in that provision"], "a": 3, "e": ""},
+  {"id": "S9-09", "c": "S9-09", "t": "9. Criminal law", "q": "Under Article 13, what is the general effect of losing awareness because of self-induced alcohol or strong-stimulant use when committing an offence?", "o": ["It does not by itself remove criminal liability", "It automatically converts the offence into a civil dispute", "It removes every possible punishment", "It automatically eliminates criminal liability"], "a": 0, "e": ""},
+  {"id": "S9-10", "c": "S9-10", "t": "9. Criminal law", "q": "What distinguishes an attempted offence under Article 15?", "o": ["The person merely has an unexpressed thought", "Intentional execution is not completed for reasons outside the offender’s will", "The person completes every element of the offence", "The conduct is accidental and involves no intention"], "a": 1, "e": ""},
+  {"id": "S9-11", "c": "S9-11", "t": "9. Criminal law", "q": "What is the effect of voluntary abandonment under Article 16?", "o": ["It always removes liability for every separate offence already committed", "It is legally identical to being stopped by the police", "It exempts liability for the intended offence, while a different completed offence may still attract liability", "It requires the intended offence to have been completed"], "a": 2, "e": ""},
+  {"id": "S9-12", "c": "S9-12", "t": "9. Criminal law", "q": "Which element is required for complicity under Article 17?", "o": ["Two people independently cause unrelated losses", "Mere presence near an offence without participation", "A family relationship between all participants", "Two or more persons intentionally participate in committing the same crime"], "a": 3, "e": ""},
+  {"id": "S9-13", "c": "S9-13", "t": "9. Criminal law", "q": "Which description best fits justifiable defence under Article 22?", "o": ["Necessary resistance to protect lawful interests against an ongoing unlawful infringement", "Any use of unlimited force against a suspected future threat", "Force used solely to punish a person for an earlier insult", "Any retaliation after the unlawful attack has ended"], "a": 0, "e": ""},
+  {"id": "S9-14", "c": "S9-14", "t": "9. Criminal law", "q": "Which institution imposes criminal punishments under Article 30?", "o": ["The victim acting alone", "A court", "The offender’s employer", "A private legal consultant"], "a": 1, "e": ""},
+  {"id": "S9-15", "c": "S9-15", "t": "9. Criminal law", "q": "Which statement about punishment for an individual offence is correct?", "o": ["A court must impose all available principal punishments together", "Additional punishments may never accompany imprisonment", "One principal punishment is imposed for an offence, and one or more additional punishments may also be imposed where legally applicable", "Every offender must receive the death penalty"], "a": 2, "e": ""},
+  {"id": "S9-16", "c": "S9-16", "t": "9. Criminal law", "q": "Which statement correctly describes criminal liability of a commercial legal person in Vietnam?", "o": ["It automatically replaces the liability of every individual involved", "It applies to every civil breach committed by any organization", "It can be imposed only through a private contractual clause", "It applies to offences and conditions specified by the Criminal Code and does not exclude individual criminal liability"], "a": 3, "e": ""},
+  {"id": "S9-17", "c": "S9-17", "t": "9. Criminal law", "q": "For an adult eligible for automatic conviction expungement under Article 70, who completed a prison sentence of up to five years, what is the ordinary waiting period if all other statutory conditions are met?", "o": ["Two years", "Three years", "Seven years", "One year"], "a": 0, "e": ""},
+  {"id": "S10-01", "c": "S10-01", "t": "10. Labor law", "q": "Which feature is central to identifying an employment relationship under the Labour Code?", "o": ["Paid work under the management, direction or supervision of an employer", "A written promise to perform unpaid voluntary work only", "Any purchase of goods from a shop", "Every independent sale made by a business"], "a": 0, "e": ""},
+  {"id": "S10-02", "c": "S10-02", "t": "10. Labor law", "q": "Which practice is prohibited under Article 8 of the Labour Code?", "o": ["Paying the agreed salary on time", "Sexual harassment in the workplace", "Providing safety equipment", "Agreeing lawful working conditions"], "a": 1, "e": ""},
+  {"id": "S10-03", "c": "S10-03", "t": "10. Labor law", "q": "Which statement about employment contracts expressed as electronic data messages is correct?", "o": ["They are necessarily invalid", "They are valid only if never stored electronically", "They can have the same value as written contracts when electronic-transaction requirements are met", "They have legal value only after conversion into handwriting"], "a": 2, "e": ""},
+  {"id": "S10-04", "c": "S10-04", "t": "10. Labor law", "q": "Which employer demand is expressly prohibited when concluding or performing an employment contract?", "o": ["Requesting information lawfully needed for recruitment", "Providing the employee with a copy of the contract", "Explaining the agreed working conditions", "Requiring a cash or property deposit as security for performance"], "a": 3, "e": ""},
+  {"id": "S10-05", "c": "S10-05", "t": "10. Labor law", "q": "Who ordinarily signs an employment contract on behalf of an enterprise employer?", "o": ["Its legal representative or a person lawfully authorized to do so", "Any customer of the enterprise", "Only the employee’s family representative", "Any employee without authorization"], "a": 0, "e": ""},
+  {"id": "S10-06", "c": "S10-06", "t": "10. Labor law", "q": "May a person authorized to conclude an employment contract re-authorize another person to sign it under Article 18?", "o": ["Yes, whenever convenient", "No, the authorized person may not re-authorize another person", "Yes, if the second person is a colleague", "Only if the employee has not read the contract"], "a": 1, "e": ""},
+  {"id": "S10-07", "c": "S10-07", "t": "10. Labor law", "q": "Under Article 19, when may an employee conclude contracts with more than one employer?", "o": ["Only when all jobs are unpaid", "Only if none of the employers keeps records", "When the employee fully performs the terms of the contracts concluded", "Only if the employee has no main occupation"], "a": 2, "e": ""},
+  {"id": "S10-08", "c": "S10-08", "t": "10. Labor law", "q": "For the same job, how many probationary periods are permitted under Article 25?", "o": ["An unlimited number if the employer changes the contract title", "Two automatically", "One each calendar year", "Only one"], "a": 3, "e": ""},
+  {"id": "S10-09", "c": "S10-09", "t": "10. Labor law", "q": "For a non-managerial position requiring a college degree or higher, what is the maximum probationary period under Article 25?", "o": ["Sixty days", "Six working days", "One hundred and eighty days", "An unlimited period agreed by the employer"], "a": 0, "e": ""},
+  {"id": "S10-10", "c": "S10-10", "t": "10. Labor law", "q": "What is the minimum probationary salary under Article 26?", "o": ["50% of the salary for the job", "85% of the salary for the job", "70% of the salary for the job", "100% of the employer’s average wage"], "a": 1, "e": ""},
+  {"id": "S10-11", "c": "S10-11", "t": "10. Labor law", "q": "For an ordinary job under an indefinite-term contract, what prior notice must an employee normally give when resigning without a statutory exception?", "o": ["Three working days", "Ten calendar days", "At least forty-five days", "Thirty days"], "a": 2, "e": ""},
+  {"id": "S10-12", "c": "S10-12", "t": "10. Labor law", "q": "Which circumstance gives an employee a right to terminate without prior notice under Article 35?", "o": ["A preference for a different commuting route", "A wish to change jobs with no other reason", "An ordinary disagreement over a lawful staff meeting", "Sexual harassment in the workplace"], "a": 3, "e": ""},
+  {"id": "S10-13", "c": "S10-13", "t": "10. Labor law", "q": "Which absence may permit employer termination without prior notice under Article 36, assuming all statutory conditions are satisfied?", "o": ["At least five consecutive working days of absence without a legitimate reason", "Any one-day absence approved by the employer", "Any period of statutory maternity leave", "Two hours of lateness during a month"], "a": 0, "e": ""},
+  {"id": "S10-14", "c": "S10-14", "t": "10. Labor law", "q": "Under Article 98, what minimum rate applies to overtime work on an employee’s weekly day off, excluding any night-work additions?", "o": ["100% of the applicable normal wage rate", "200% of the applicable normal wage rate", "150% of the applicable normal wage rate", "300% in every situation"], "a": 1, "e": ""},
+  {"id": "S10-15", "c": "S10-15", "t": "10. Labor law", "q": "Under Article 98, what minimum additional payment applies to ordinary night work, excluding overtime additions?", "o": ["5% of the applicable normal daytime wage rate", "10% of that rate", "30% of that rate", "20% of that rate"], "a": 2, "e": ""},
+  {"id": "S10-16", "c": "S10-16", "t": "10. Labor law", "q": "Which paid personal leave entitlement applies when an employee’s biological or adopted child marries, after notification to the employer?", "o": ["One month", "Three days", "Five days", "One day"], "a": 3, "e": ""},
+  {"id": "S10-17", "c": "S10-17", "t": "10. Labor law", "q": "Under Article 151, what is the minimum age for a foreign employee working in Vietnam?", "o": ["Eighteen", "Fifteen", "Sixteen", "Twenty-one"], "a": 0, "e": ""},
+  {"id": "LC-01", "c": "LC-01", "t": "10. Labor law cases", "q": "H signs a quarry employment contract. At the site, she discovers a direct threat to her life or health. The employer insists that her signature requires her to work. Which answer is correct?", "o": ["She must work because she accepted the contract", "She may refuse the work because of the direct threat to her life or health", "She may refuse only after paying the employer a deposit", "She has this right only because she is a woman"], "a": 1, "e": ""},
+  {"id": "LC-02", "c": "LC-02", "t": "10. Labor law cases", "q": "A supervisor repeatedly directs unwanted sexual remarks at an employee at work. The employee does not welcome or accept this conduct. Which rule is most directly relevant?", "o": ["The prohibition of sexual harassment in the workplace", "The requirement to pay a deposit before employment", "The automatic extension of probation", "The rule that all overtime is unpaid"], "a": 0, "e": ""},
+  {"id": "LC-03", "c": "LC-03", "t": "10. Labor law cases", "q": "Nam works for wages under the shop owner’s supervision. Their document is called a work agreement. After an illness-related absence, the owner withholds wages already earned solely as a disciplinary fine. Which statement is correct?", "o": ["The document title excludes every employment protection", "Unexpected absence always permits forfeiture of all earned wages", "The relationship may be an employment contract, and withholding wages as a disciplinary fine is prohibited", "Part-time workers cannot be employees"], "a": 2, "e": ""},
+  {"id": "LC-04", "c": "LC-04", "t": "10. Labor law cases", "q": "A company and an employee conclude their employment contract through an electronic data message that satisfies the applicable electronic-transaction rules. The employer later says it has no legal value because it is not on paper. Which answer is correct?", "o": ["It has no legal value in all cases", "It is effective only if converted into a handwritten document", "It is merely a social promise", "It can have the same value as a written employment contract"], "a": 3, "e": ""},
+  {"id": "LC-05", "c": "LC-05", "t": "10. Labor law cases", "q": "Huong hires a cashier and demands to keep the employee’s original identity card throughout employment as security against cash shortages. Is this permitted?", "o": ["No, retaining the employee’s original identity documents is prohibited", "Yes, whenever the employer handles cash", "Yes, if the employer promises to return it after five years", "Only if the employee also provides a cash deposit"], "a": 0, "e": ""},
+  {"id": "LC-06", "c": "LC-06", "t": "10. Labor law cases", "q": "A group of workers, all aged at least 18, takes an eight-month seasonal job. They authorize one worker in the group to sign a written employment contract, with the required list of workers attached. Which statement is correct?", "o": ["The representative may freely authorize any outsider to sign instead", "The contract may be effective as if concluded with each worker, subject to the statutory requirements", "Group authorization is never permitted", "A group contract eliminates each worker’s employment rights"], "a": 1, "e": ""},
+  {"id": "LC-07", "c": "LC-07", "t": "10. Labor law cases", "q": "Lan works as an accountant for H and signs additional employment contracts with two smaller businesses. She can fully perform all three contracts. Is having several employers prohibited merely because she already works for H?", "o": ["Yes, a worker may have only one employer in all cases", "Yes, unless every additional job is unpaid", "No, multiple employment contracts are permitted if she fully performs them", "No, and she is automatically exempt from every insurance obligation"], "a": 2, "e": ""},
+  {"id": "LC-08", "c": "LC-08", "t": "10. Labor law cases", "q": "Hoa takes a non-managerial job requiring a university degree. Her agreed probation is 60 days, with pay equal to 70% of the salary for that job. Which change is needed to meet Article 26?", "o": ["Reduce her pay to 50%", "Replace all pay with a training certificate", "Extend probation to six months", "Raise probationary pay to at least 85% of the salary for the job"], "a": 3, "e": ""},
+  {"id": "LC-09", "c": "LC-09", "t": "10. Labor law cases", "q": "An employee receives one month of unpaid leave to care for an ill mother. Before it ends, the employer expressly approves ten additional days. During those approved days, it terminates the contract solely for unauthorized absence. Which statement is correct?", "o": ["The stated ground is not justified because the additional leave was approved", "Every absence longer than one month is automatically unauthorized", "Approval is legally irrelevant once the mother remains ill", "The employer may always terminate immediately during approved leave"], "a": 0, "e": ""},
+  {"id": "LC-10", "c": "LC-10", "t": "10. Labor law cases", "q": "An employee is sexually harassed in the workplace and wishes to leave immediately. Under Article 35, must the employee give the ordinary resignation notice?", "o": ["Yes, in every case", "No, this is a statutory ground for termination without prior notice", "Only a manager may leave without notice", "The employee must first complete another probationary period"], "a": 1, "e": ""},
+  {"id": "LC-11", "c": "LC-11", "t": "10. Labor law cases", "q": "An employee repeatedly fails to meet performance criteria in a lawfully issued assessment regulation. The employer consulted the workplace employee representative organization where required. Assuming notice and other legal requirements are met, which answer is correct?", "o": ["Poor performance can never be a legal ground for termination", "A manager’s undocumented dislike is enough in every case", "Repeated failure under the lawful criteria can be a ground for employer termination", "The employer must treat the employee as having resigned voluntarily"], "a": 2, "e": ""},
+  {"id": "LC-12", "c": "LC-12", "t": "10. Labor law cases", "q": "B has an indefinite-term contract for an ordinary job. After 13 consecutive months of treatment following an accident, he remains unable to work. X relies on this statutory medical ground to terminate. What minimum prior notice applies under Article 36(2)(c), assuming no special occupation rule?", "o": ["No notice in every medical case", "Thirty calendar days", "Forty-five days solely because the contract is indefinite", "At least three working days"], "a": 3, "e": ""},
+  {"id": "LC-13", "c": "LC-13", "t": "10. Labor law cases", "q": "An hourly-paid employee lawfully works two overtime hours in daytime on a normal working day. The applicable ordinary hourly wage is VND 100,000. What is the statutory minimum pay for those two overtime hours alone?", "o": ["VND 300,000", "VND 200,000", "VND 250,000", "VND 600,000"], "a": 0, "e": ""},
+  {"id": "LC-14", "c": "LC-14", "t": "10. Labor law cases", "q": "An employee notifies the employer of the employee’s own marriage. Under Article 115, what paid personal leave is the employee entitled to?", "o": ["One day", "Three days", "Ten days", "Only unpaid leave"], "a": 1, "e": ""},
+  {"id": "LC-15", "c": "LC-15", "t": "10. Labor law cases", "q": "An employer refuses a qualified female employee access to professional training solely because she is a woman. There is no job-specific legal requirement justifying the distinction. Which principle is most directly violated?", "o": ["The right to require an employment deposit", "The employer’s unlimited discretion to discriminate", "Gender equality and the prohibition of labour discrimination", "The rule that all training must be unpaid"], "a": 2, "e": ""},
+  {"id": "LC-16", "c": "LC-16", "t": "10. Labor law cases", "q": "A foreign applicant is qualified, healthy and has full legal capacity. The employer says a work permit is unnecessary simply because the applicant is a foreign expert. No statutory exemption applies. Which answer is correct?", "o": ["Expert status always eliminates the permit requirement", "Only the employee’s verbal promise is required", "A foreign passport substitutes for every work authorization", "A work permit is required unless a lawful exemption applies"], "a": 3, "e": ""},
+  {"id": "LC-17", "c": "LC-17", "t": "10. Labor law cases", "q": "A foreign lawyer has been granted the licence to practise law in Vietnam under the Law on Lawyers and will work in that capacity. What does Article 154 provide?", "o": ["The lawyer falls within a statutory work-permit exemption, while other applicable legal duties remain relevant", "Every foreign professional is automatically exempt", "The lawyer needs no compliance with any law in Vietnam", "The exemption applies only if the lawyer marries a Vietnamese citizen"], "a": 0, "e": ""},
+  {"id": "LC-18", "c": "LC-18", "t": "10. Labor law cases", "q": "A German citizen is married to a Vietnamese citizen and lives in Vietnam. He plans to work in Vietnam. Which statement best reflects Article 154(8)?", "o": ["He must obtain a work permit in every case despite that status", "He falls within the work-permit exemption, but applicable notification and other employment requirements still need to be observed", "Marriage removes all employment and immigration obligations", "The exemption applies only while he continues to reside in Germany"], "a": 1, "e": ""}
+];
+
+const CHAPTERS = [
+  {t:'1. Meaning and basic concepts of law', no:'01', name:'Meaning and basic concepts of law', vi:'Khái niệm cơ bản về pháp luật', ico:'📜'},
+  {t:'2. Source of law', no:'02', name:'Source of law', vi:'Nguồn của pháp luật', ico:'📚'},
+  {t:'3. Rule of law', no:'03', name:'Rule of law', vi:'Pháp quyền', ico:'⚖️'},
+  {t:'4. Legal system', no:'04', name:'Legal system', vi:'Hệ thống pháp luật', ico:'🌏'},
+  {t:'5. Forms of government', no:'05', name:'Forms of government', vi:'Hình thức chính thể', ico:'🏛️'},
+  {t:'6. Constitutional law', no:'06', name:'Constitutional law', vi:'Luật Hiến pháp', ico:'📘'},
+  {t:'7. Civil law part 1', no:'07', name:'Civil law, part 1', vi:'Luật Dân sự (phần 1)', ico:'🤝'},
+  {t:'8. Civil law part 2', no:'08', name:'Civil law, part 2', vi:'Luật Dân sự (phần 2)', ico:'💍'},
+  {t:'9. Criminal law', no:'09', name:'Criminal law', vi:'Luật Hình sự', ico:'🚨'},
+  {t:'10. Labor law', no:'10', name:'Labor law', vi:'Luật Lao động', ico:'💼'},
+  {t:'10. Labor law cases', no:'11', name:'Labor law cases', vi:'Tình huống Luật Lao động', ico:'🧩'}
+];
+
+const LETTERS = 'ABCDEF';
+const LS_KEY = 'law-quiz-v1';
+const EXAM_N = 20, EXAM_SEC_PER_Q = 60, MAX_CUSTOM = 300;
+const CUSTOM_TOPIC = 'Câu hỏi của bạn';
+const SYNC_TEXT = {
+  connecting:'Đang kết nối để lưu tiến độ…',
+  cloud:'Tiến độ được lưu vào tài khoản của bạn, mở trên thiết bị khác vẫn học tiếp được.',
+  local:'Tiến độ được lưu trên trình duyệt này.',
+  error:'Chưa lưu được lên tài khoản. Tiến độ vẫn được giữ trên trình duyệt này.',
+  full:'Bộ nhớ lưu trữ đã đầy. Xoá bớt câu tự thêm để tiếp tục đồng bộ.'
+};
+const REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const app = document.getElementById('app');
+let state = normalize(loadLocal());
+let session = null, qTimerId = null, examTimerId = null;
+let syncMode = (window.claude && typeof window.claude.use === 'function') ? 'connecting' : 'local';
+let docRef = null, dirty = false, saving = false, flushTimer = null, retried = false;
+let armed = null, customOpen = false, customFlash = null, customDraft = '';
+
+/* ---------- storage ---------- */
+function loadLocal(){ try{ const raw = localStorage.getItem(LS_KEY); return raw ? JSON.parse(raw) : null; }catch(e){ return null; } }
+function saveLocal(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){} }
+function validQ(q){ return q && typeof q.id==='string' && typeof q.q==='string' && Array.isArray(q.o) && q.o.length>=2 && q.o.every(x=>typeof x==='string') && Number.isInteger(q.a) && q.a>=0 && q.a<q.o.length; }
+function normalize(s){
+  s = (s && typeof s==='object') ? s : {};
+  const custom = Array.isArray(s.custom) ? s.custom.filter(validQ).map(q=>({id:q.id,t:typeof q.t==='string'&&q.t?q.t:CUSTOM_TOPIC,q:q.q,o:q.o.slice(),a:q.a,e:typeof q.e==='string'?q.e:''})) : [];
+  const stats = {};
+  if(s.stats && typeof s.stats==='object'){ for(const k of Object.keys(s.stats)){ const v=s.stats[k]; if(v&&typeof v==='object') stats[k]={r:+v.r||0,w:+v.w||0,s:+v.s||0,t:+v.t||0}; } }
+  const p = (s.prefs && typeof s.prefs==='object') ? s.prefs : {};
+  return { stats, custom, topics: Array.isArray(s.topics) ? s.topics.filter(x=>typeof x==='string') : [], prefs:{ timer: p.timer !== false, sound: p.sound !== false }, updatedAt: Number(s.updatedAt)||0 };
+}
+function persist(){ state.updatedAt = Date.now(); saveLocal(); dirty = true; scheduleFlush(); }
+function scheduleFlush(){ clearTimeout(flushTimer); flushTimer = setTimeout(flush, 1500); }
+async function flush(){
+  if(!docRef || saving || !dirty) return;
+  saving = true; dirty = false;
+  try{ await docRef.set(JSON.parse(JSON.stringify(state))); retried = false; setSync('cloud'); }
+  catch(e){
+    const code = e && e.code;
+    if(code==='unavailable' && !retried){ retried = true; dirty = true; saving = false; setTimeout(flush, 1500 + Math.random()*1500); return; }
+    retried = false;
+    if(code==='quota_exceeded') setSync('full');
+    else{ setSync('error'); if(['invalid_argument','revoked','not_granted','capability_disabled','capability_removed','transform_error'].includes(code)) docRef = null; }
+  }
+  saving = false;
+  if(dirty) scheduleFlush();
+}
+function setSync(mode){ syncMode = mode; const el = document.getElementById('syncNote'); if(el) el.textContent = SYNC_TEXT[mode]; }
+function withTimeout(p, ms){ return Promise.race([p, new Promise((_,rej)=>setTimeout(()=>rej({code:'timeout'}), ms))]); }
+async function initCloud(){
+  if(!(window.claude && typeof window.claude.use === 'function')){ setSync('local'); return; }
+  try{
+    const [dbNs, userNs] = await Promise.all([window.claude.use('db'), window.claude.use('user')]);
+    if(!dbNs || !userNs){ setSync('local'); return; }
+    const id = await userNs.id();
+    if(!id){ setSync('local'); return; }
+    const ref = dbNs.doc('data/users/' + id + '/progress');
+    const snap = await withTimeout(ref.get(), 10000);
+    docRef = ref;
+    if(snap.exists){
+      const remote = normalize(JSON.parse(JSON.stringify(snap.data())));
+      if(remote.updatedAt > state.updatedAt){ state = remote; saveLocal(); if(!session) renderHome(); }
+      else if(state.updatedAt > remote.updatedAt){ dirty = true; flush(); }
+    }else if(state.updatedAt > 0){ dirty = true; flush(); }
+    setSync('cloud');
+  }catch(e){ setSync(docRef ? 'error' : 'local'); }
+}
+document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden' && dirty){ clearTimeout(flushTimer); flush(); } });
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function shuffle(a){ a = a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function fmt(sec){ sec=Math.max(0,Math.round(sec)); const m=Math.floor(sec/60), s=sec%60; return m+':'+String(s).padStart(2,'0'); }
+function num(n){ return Math.round(n).toLocaleString('vi-VN'); }
+function pickOne(a){ return a[Math.floor(Math.random()*a.length)]; }
+function allQuestions(){ return BANK.concat(state.custom); }
+function chapterList(){
+  const list = CHAPTERS.slice();
+  for(const q of state.custom){ if(!list.some(c=>c.t===q.t)) list.push({t:q.t, no:'✎', name:q.t, vi:'Câu hỏi bạn tự thêm', ico:'✏️'}); }
+  return list.filter(c=>allQuestions().some(q=>q.t===c.t));
+}
+function chapterOf(t){ return chapterList().find(c=>c.t===t) || {t, no:'', name:t, vi:'', ico:'📝'}; }
+function statusOf(id){ const s = state.stats[id]; if(!s || (s.r+s.w)===0) return 'new'; if(s.s>=2) return 'mastered'; if(s.s===0) return 'weak'; return 'learning'; }
+function record(id, ok){ const s = state.stats[id] || {r:0,w:0,s:0,t:0}; if(ok){ s.r++; s.s++; } else { s.w++; s.s=0; } s.t = Date.now(); state.stats[id] = s; }
+function makeItem(q){ return { q, order: shuffle(q.o.map((_,k)=>k)), picked: null }; }
+function qTime(q){ return (q.c && q.c.startsWith('LC')) ? 60 : 30; }
+function needsConfirm(el, key, label){
+  if(armed && armed.key===key && Date.now() < armed.until){ armed = null; return false; }
+  if(!el.dataset.orig) el.dataset.orig = el.textContent;
+  armed = { key, until: Date.now() + 4000 };
+  el.textContent = label; el.classList.add('armed');
+  setTimeout(()=>{ if(el.isConnected && armed && armed.key===key && Date.now() >= armed.until - 50){ el.textContent = el.dataset.orig; el.classList.remove('armed'); armed = null; } }, 4000);
+  return true;
+}
+
+/* ---------- mascot (original character: Bé Mèo) ---------- */
+function mascot(mood, size){
+  size = size || 64;
+  const P = '#4A3557';
+  let eyes, mouth, extra = '';
+  if(mood==='happy' || mood==='wave'){
+    eyes = `<path d="M38 67 q7 -9 14 0 M68 67 q7 -9 14 0" fill="none" stroke="${P}" stroke-width="4" stroke-linecap="round"/>`;
+    mouth = `<path d="M51 77 q9 13 18 0 z" fill="#FF8FBF" stroke="${P}" stroke-width="3" stroke-linejoin="round"/>`;
+  }else if(mood==='sad'){
+    eyes = `<path d="M40 60 l10 6 l-10 6 M80 60 l-10 6 l10 6" fill="none" stroke="${P}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+    mouth = `<path d="M52 85 q8 -8 16 0" fill="none" stroke="${P}" stroke-width="3" stroke-linecap="round"/>`;
+    extra = `<path d="M36 74 q-4 7 0 9 q4 -2 0 -9 z" fill="#9FD6FF" stroke="${P}" stroke-width="1.5"/>`;
+  }else{
+    eyes = `<ellipse cx="45" cy="65" rx="5" ry="6.5" fill="${P}"/><ellipse cx="75" cy="65" rx="5" ry="6.5" fill="${P}"/><circle cx="47" cy="62.5" r="2" fill="#fff"/><circle cx="77" cy="62.5" r="2" fill="#fff"/>`;
+    mouth = `<path d="M52 78 q4 5 8 0 q4 5 8 0" fill="none" stroke="${P}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }
+  if(mood==='wave') extra = `<ellipse cx="104" cy="88" rx="10" ry="9" fill="#fff" stroke="${P}" stroke-width="3.5"/><path d="M110 70 q5 -4 4 -10 M116 76 q6 -2 7 -8" fill="none" stroke="${P}" stroke-width="2.5" stroke-linecap="round"/>`;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 124 120" aria-hidden="true">
+    <path d="M22 54 L30 14 L57 34 Z" fill="#fff" stroke="${P}" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M98 54 L90 14 L63 34 Z" fill="#fff" stroke="${P}" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M31 41 L34 25 L46 35 Z" fill="#FFBCD8"/><path d="M89 41 L86 25 L74 35 Z" fill="#FFBCD8"/>
+    <ellipse cx="60" cy="70" rx="45" ry="37" fill="#fff" stroke="${P}" stroke-width="4"/>
+    <path d="M84 20 L92 27 L84 34 Z M100 20 L92 27 L100 34 Z" fill="#FF8FBF" stroke="${P}" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="92" cy="27" r="3.4" fill="#FF8FBF" stroke="${P}" stroke-width="2.5"/>
+    <ellipse cx="34" cy="79" rx="8" ry="5" fill="#FFBCD8" opacity=".85"/><ellipse cx="86" cy="79" rx="8" ry="5" fill="#FFBCD8" opacity=".85"/>
+    ${eyes}${mouth}${extra}
+  </svg>`;
+}
+
+/* ---------- sound & confetti ---------- */
+let actx = null;
+function sound(type){
+  if(!state.prefs.sound) return;
+  try{
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const now = actx.currentTime;
+    const seq = type==='ok' ? [[880,0],[1318.5,.09]] : type==='no' ? [[330,0],[247,.13]] : type==='win' ? [[784,0],[988,.1],[1318.5,.2]] : [[660,0]];
+    seq.forEach(([f,t])=>{
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = type==='no' ? 'triangle' : 'sine'; o.frequency.value = f;
+      g.gain.setValueAtTime(.0001, now+t); g.gain.exponentialRampToValueAtTime(.16, now+t+.02); g.gain.exponentialRampToValueAtTime(.0001, now+t+.24);
+      o.connect(g); g.connect(actx.destination); o.start(now+t); o.stop(now+t+.26);
+    });
+  }catch(e){}
+}
+function confetti(rect, n){
+  if(REDUCE_MOTION || !rect) return;
+  const colors = ['#FF8FBF','#79BDEE','#7ED59E','#EEC45A','#A98BF5'];
+  for(let i=0;i<(n||16);i++){
+    const s = document.createElement('i'); s.className = 'conf';
+    s.style.left = (rect.left + rect.width/2) + 'px'; s.style.top = (rect.top + rect.height/2) + 'px';
+    s.style.background = colors[i % colors.length];
+    const ang = Math.random()*Math.PI*2, d = 60 + Math.random()*100;
+    s.style.setProperty('--dx', (Math.cos(ang)*d) + 'px'); s.style.setProperty('--dy', (Math.sin(ang)*d - 50) + 'px'); s.style.setProperty('--r', (Math.random()*600-300) + 'deg');
+    document.body.appendChild(s); setTimeout(()=>s.remove(), 950);
+  }
+}
+
+/* ---------- home ---------- */
+function stopTimers(){ if(qTimerId){ clearInterval(qTimerId); qTimerId = null; } if(examTimerId){ clearInterval(examTimerId); examTimerId = null; } }
+function renderHome(){
+  stopTimers(); session = null; armed = null;
+  const all = allQuestions();
+  const c = { mastered:0, learning:0, weak:0, new:0 };
+  all.forEach(q=>c[statusOf(q.id)]++);
+  const chaps = chapterList();
+  const eN = Math.min(EXAM_N, all.length);
+  const card = (ch, i)=>{
+    const qs = all.filter(q=>q.t===ch.t);
+    const m = qs.filter(q=>statusOf(q.id)==='mastered').length;
+    const w = qs.filter(q=>statusOf(q.id)==='weak').length;
+    const done = qs.length && m===qs.length;
+    return `<button class="chap c${i%6}" data-act="chapter" data-topic="${esc(ch.t)}" aria-label="Chơi chương ${esc(ch.no)}: ${esc(ch.name)}, ${qs.length} câu, ${m} câu đã thuộc">
+      <span class="chap-top"><span class="chap-ico" aria-hidden="true">${ch.ico}</span><span class="chap-no">${done ? '👑 ' : ''}${esc(ch.no)}</span></span>
+      <span class="chap-name" lang="en">${esc(ch.name)}</span>
+      <span class="chap-vi">${esc(ch.vi)}</span>
+      <span class="chap-meta">${qs.length} câu, ${m} đã thuộc${w ? `, ${w} cần ôn` : ''}</span>
+      <span class="chap-bar" aria-hidden="true"><i style="width:${qs.length ? (m/qs.length*100).toFixed(1) : 0}%"></i></span>
+    </button>`;
+  };
+  app.innerHTML = `
+  <header class="hero">
+    <div class="hero-mascot">${mascot('wave', 92)}</div>
+    <div class="bubble">Hôm nay mình ôn chương nào đây ta? ✨</div>
+    <h1>Ôn thi Pháp luật đại cương</h1>
+  </header>
+  <p class="lede">${all.length} câu hỏi chia theo ${chaps.length} chương. Chọn một chương bên dưới để bắt đầu chơi nhé!</p>
+  <div class="pills">
+    <span class="pill">🌟 ${c.mastered} đã thuộc</span>
+    <span class="pill">💗 ${c.weak} cần ôn</span>
+    <span class="pill">🌱 ${c.new} chưa làm</span>
+  </div>
+
+  <div class="quick">
+    <button class="qa pink" data-act="weak" ${c.weak?'':'disabled'}><span class="qa-ico" aria-hidden="true">💗</span><span><b>Ôn lại câu sai</b><small>${c.weak ? `${c.weak} câu đang đợi bạn` : 'Chưa có câu sai nào, giỏi quá!'}</small></span></button>
+    <button class="qa lav" data-act="exam" ${all.length?'':'disabled'}><span class="qa-ico" aria-hidden="true">📝</span><span><b>Thi thử ${eN} câu</b><small>${eN} phút, lấy ngẫu nhiên từ mọi chương</small></span></button>
+  </div>
+  <div class="switches">
+    <button class="switch" role="switch" aria-checked="${state.prefs.timer}" data-act="toggle-timer"><span class="knob" aria-hidden="true"></span>⏱ Đếm giờ mỗi câu</button>
+    <button class="switch" role="switch" aria-checked="${state.prefs.sound}" data-act="toggle-sound"><span class="knob" aria-hidden="true"></span>🔊 Âm thanh</button>
+  </div>
+
+  <h2 class="sec">Chọn chương để chơi</h2>
+  <div class="chapters">${chaps.map(card).join('')}</div>
+
+  <details class="box" id="customBox" ${customOpen?'open':''}>
+    <summary>✏️ Thêm câu hỏi của bạn</summary>
+    <p>Dán câu hỏi theo mẫu dưới đây, mỗi câu cách nhau một dòng trống. Dòng “Explain” và “Topic” có thể bỏ qua. Có thể thay dòng “Answer” bằng dấu * trước đáp án đúng.</p>
+    <pre class="sample" lang="en">Q: Which branch makes laws?
+A. The executive
+B. The legislature
+C. The judiciary
+D. The media
+Answer: B
+Topic: My questions</pre>
+    <label class="sr" for="customInput">Câu hỏi cần thêm</label>
+    <textarea id="customInput" placeholder="Dán câu hỏi vào đây">${esc(customDraft)}</textarea>
+    <button class="btn soft" data-act="add-custom">Thêm vào bộ câu hỏi</button>
+    <p id="customMsg" class="msg ${customFlash ? (customFlash.ok ? 'ok' : 'err') : ''}" role="status">${customFlash ? esc(customFlash.text) : ''}</p>
+    ${state.custom.length ? `<p class="hint">Bạn đã thêm ${state.custom.length} câu. <button class="link" data-act="clear-custom">Xoá các câu đã thêm</button></p>` : ''}
+  </details>
+
+  <footer class="foot">
+    <p class="hint" id="syncNote">${SYNC_TEXT[syncMode]}</p>
+    <button class="link" data-act="reset">Đặt lại tiến độ</button>
+  </footer>`;
+  customFlash = null;
+}
+
+/* ---------- sessions ---------- */
+function startPlay(questions, title, key){
+  stopTimers();
+  session = { mode:'play', title, key, items: shuffle(questions).map(makeItem), i:0, score:0, streak:0, best:0, done:false };
+  showQuestion();
+}
+function startExam(){
+  stopTimers();
+  const qs = shuffle(allQuestions()).slice(0, EXAM_N);
+  session = { mode:'exam', title:'Thi thử', items: qs.map(makeItem), i:0, done:false, startedAt: Date.now(), endsAt: Date.now() + qs.length*EXAM_SEC_PER_Q*1000 };
+  renderGame(true);
+  examTimerId = setInterval(examTick, 500);
+}
+function cur(){ return session.items[session.i]; }
+function showQuestion(){ renderGame(true); startQTimer(); }
+function startQTimer(){
+  if(qTimerId){ clearInterval(qTimerId); qTimerId = null; }
+  if(!session || session.mode!=='play' || !state.prefs.timer) return;
+  const it = cur(); it.start = Date.now(); it.dur = qTime(it.q);
+  qTimerId = setInterval(()=>{
+    if(!session || session.mode!=='play'){ clearInterval(qTimerId); qTimerId = null; return; }
+    const rem = Math.max(0, it.dur - (Date.now()-it.start)/1000);
+    const fill = document.getElementById('tfill'), nEl = document.getElementById('tnum'), bar = document.getElementById('tbar');
+    if(fill) fill.style.width = (rem/it.dur*100) + '%';
+    if(nEl) nEl.textContent = Math.ceil(rem);
+    if(bar) bar.classList.toggle('low', rem <= 5);
+    if(rem <= 0){ clearInterval(qTimerId); qTimerId = null; answer(-1); }
+  }, 100);
+}
+function examTick(){
+  if(!session || session.mode!=='exam' || session.done){ clearInterval(examTimerId); examTimerId = null; return; }
+  const rem = (session.endsAt - Date.now())/1000;
+  const el = document.getElementById('examTimer');
+  if(el){ el.textContent = '⏱ ' + fmt(rem); el.classList.toggle('hot', rem <= 60); }
+  if(rem <= 0) submitExam();
+}
+
+function renderGame(focusQ){
+  const s = session, it = cur(), q = it.q, N = s.items.length;
+  const play = s.mode==='play';
+  const answered = play && it.picked !== null;
+  const ch = chapterOf(q.t);
+  const doneCount = s.items.filter(x=>x.picked!==null).length;
+  const tiles = it.order.map((orig,k)=>{
+    let cls = `tile t${k%4}`, mark = '';
+    if(answered){
+      if(orig===q.a){ cls += ' is-correct'; mark = '<span class="mark" aria-hidden="true">✓</span><span class="sr"> (đáp án đúng)</span>'; }
+      else if(orig===it.picked){ cls += ' is-wrong'; mark = '<span class="mark" aria-hidden="true">✕</span><span class="sr"> (bạn chọn)</span>'; }
+      else cls += ' is-dim';
+    }else if(!play && it.picked===orig){ cls += ' is-picked'; }
+    const pressed = play ? '' : ` aria-pressed="${it.picked===orig}"`;
+    return `<button class="${cls}" data-act="pick" data-k="${k}"${pressed} ${answered?'disabled':''}><span class="tl">${LETTERS[k]}</span><span lang="en">${esc(q.o[orig])}</span>${mark}</button>`;
+  }).join('');
+
+  let top;
+  if(play){
+    top = `<span class="pill">Câu ${s.i+1}/${N}</span><span class="spacer"></span>
+      <span class="pill ${s.streak>=2?'hot':''}" aria-label="Chuỗi đúng liên tiếp">🔥 ${s.streak}</span>
+      <span class="pill" aria-label="Điểm">⭐ ${num(s.score)}</span>`;
+  }else{
+    top = `<span class="pill">Câu ${s.i+1}/${N}</span><span class="spacer"></span>
+      <span class="pill" id="examTimer" aria-label="Thời gian còn lại">⏱ ${fmt((s.endsAt-Date.now())/1000)}</span>`;
+  }
+  let timerBar = '';
+  if(play && state.prefs.timer && !answered){
+    const dur = it.dur || qTime(q), rem = it.start ? Math.max(0, dur - (Date.now()-it.start)/1000) : dur;
+    timerBar = `<div class="tbar" id="tbar" aria-hidden="true"><span class="track"><span class="fill" id="tfill" style="width:${(rem/dur*100).toFixed(1)}%"></span></span><b id="tnum">${Math.ceil(rem)}</b></div>`;
+  }
+
+  let below = '';
+  if(answered){
+    const ok = it.picked === q.a;
+    below = `<div class="feedback ${ok?'ok':'no'}" role="status">
+      <div class="fb-in">
+        ${mascot(ok?'happy':'sad', 58)}
+        <div class="fb-text">
+          <p class="fb-title">${esc(it.msg)}</p>
+          <p class="fb-sub">${ok ? `+${num(it.points)} điểm${s.streak>=2 ? `, chuỗi ${s.streak} câu 🔥` : ''}` : `Đáp án đúng là ${LETTERS[it.order.indexOf(q.a)]}.`}</p>
+        </div>
+        <button class="btn primary" data-act="next" id="nextBtn">${s.i===N-1 ? 'Xem kết quả 🎀' : 'Tiếp tục ➜'}</button>
+      </div>
+    </div>`;
+  }else if(play){
+    below = `<p class="hint kbd">Phím 1–4 hoặc A–D để chọn, Enter để sang câu tiếp.</p>`;
+  }else{
+    below = `<div class="exam-nav"><button class="btn soft" data-act="prev" ${s.i===0?'disabled':''}>◀ Câu trước</button><button class="btn soft" data-act="next" ${s.i===N-1?'disabled':''}>Câu sau ▶</button></div>
+      <div class="dots" aria-label="Danh sách câu">${s.items.map((x,j)=>`<button class="dot ${x.picked!==null?'done':''} ${j===s.i?'cur':''}" data-act="jump" data-i="${j}" aria-label="Câu ${j+1}${x.picked!==null?', đã trả lời':''}"${j===s.i?' aria-current="true"':''}>${j+1}</button>`).join('')}</div>
+      <div class="submit-row"><button class="btn primary" data-act="submit">Nộp bài (${doneCount}/${N} câu đã làm)</button></div>
+      <p class="hint kbd">Phím 1–4 để chọn, mũi tên trái/phải để chuyển câu.</p>`;
+  }
+
+  app.innerHTML = `<div class="game ${answered?'answered':''}">
+    <div class="topbar">
+      <button class="icon-btn" data-act="exit" aria-label="${play ? 'Về trang chính' : 'Thoát bài thi'}">✕</button>
+      ${top}
+      <button class="icon-btn" data-act="sound-quick" aria-label="${state.prefs.sound ? 'Tắt âm thanh' : 'Bật âm thanh'}">${state.prefs.sound ? '🔊' : '🔇'}</button>
+    </div>
+    ${timerBar}
+    <section class="qcard">
+      <div class="qhead">${mascot(answered ? (it.picked===q.a ? 'happy' : 'sad') : 'idle', 34)}<span class="qtopic" lang="en">${esc(ch.name)}${q.c ? ` (${esc(q.c)})` : ''}</span></div>
+      <h2 class="qtext ${q.q.length > 160 ? 'long' : ''}" id="qtext" tabindex="-1" lang="en">${esc(q.q)}</h2>
+    </section>
+    <div class="tiles" role="group" aria-labelledby="qtext">${tiles}</div>
+    ${below}
+  </div>`;
+  if(focusQ){ window.scrollTo(0,0); const h = document.getElementById('qtext'); if(h) h.focus({preventScroll:true}); }
+}
+
+function answer(k){
+  const s = session; if(!s || s.done) return;
+  const it = cur();
+  if(s.mode==='exam'){
+    if(k<0 || k>=it.order.length) return;
+    it.picked = it.order[k]; renderGame(false);
+    const b = app.querySelector(`[data-act="pick"][data-k="${k}"]`); if(b) b.focus();
+    return;
+  }
+  if(it.picked !== null) return;
+  if(qTimerId){ clearInterval(qTimerId); qTimerId = null; }
+  const tileEl = k>=0 ? app.querySelector(`[data-act="pick"][data-k="${k}"]`) : null;
+  const rect = tileEl ? tileEl.getBoundingClientRect() : null;
+  const timedOut = k < 0;
+  it.picked = timedOut ? -1 : it.order[k];
+  const ok = it.picked === it.q.a;
+  if(ok){
+    s.streak++; s.best = Math.max(s.best, s.streak);
+    let pts;
+    if(state.prefs.timer && it.start){ const frac = Math.max(0, 1 - (Date.now()-it.start)/1000/(it.dur||30)); pts = 500 + Math.round(500*frac); }
+    else pts = 800;
+    pts += Math.min(s.streak-1, 5) * 100;
+    it.points = pts; s.score += pts;
+    it.msg = pickOne(['Đúng rồi! 🎉','Giỏi quá đi! 💖','Chuẩn luôn! ✨','Siêu ghê! 🌟','Quá đỉnh! 🍓']);
+  }else{
+    s.streak = 0; it.points = 0;
+    it.msg = timedOut ? 'Hết giờ mất rồi! ⏰' : pickOne(['Tiếc quá à! 🥺','Sai mất rồi! 😿','Hụt chút xíu! 🫣']);
+  }
+  record(it.q.id, ok); persist();
+  renderGame(false);
+  if(ok){ sound('ok'); confetti(rect, 18); } else sound('no');
+  const nb = document.getElementById('nextBtn'); if(nb) nb.focus({preventScroll:true});
+}
+function next(){
+  const s = session; if(!s || s.done) return;
+  if(s.mode==='exam'){ if(s.i < s.items.length-1){ s.i++; renderGame(true); } return; }
+  if(cur().picked === null) return;
+  if(s.i < s.items.length-1){ s.i++; showQuestion(); }
+  else finish();
+}
+function prev(){ const s = session; if(s && s.mode==='exam' && !s.done && s.i>0){ s.i--; renderGame(true); } }
+function submitExam(){
+  const s = session; if(!s || s.mode!=='exam' || s.done) return;
+  s.used = Math.min((Date.now()-s.startedAt)/1000, (s.endsAt-s.startedAt)/1000);
+  s.items.forEach(it=>record(it.q.id, it.picked===it.q.a));
+  persist(); finish();
+}
+function finish(){ stopTimers(); session.done = true; renderResults(); }
+
+/* ---------- results ---------- */
+function reviewItem(it){
+  const q = it.q, ok = it.picked === q.a;
+  const yours = (it.picked === null || it.picked < 0) ? (it.picked === -1 ? 'Hết giờ, chưa chọn' : 'Chưa trả lời') : q.o[it.picked];
+  return `<article class="rev">
+    ${q.c ? `<p class="rev-code">${esc(q.c)}</p>` : ''}
+    <p class="rev-q" lang="en">${esc(q.q)}</p>
+    ${ok ? `<p class="rev-a ok">✓ <span lang="en">${esc(q.o[q.a])}</span></p>`
+         : `<p class="rev-a no">✕ Bạn chọn: <span lang="en">${esc(yours)}</span></p><p class="rev-a ok">✓ Đáp án đúng: <span lang="en">${esc(q.o[q.a])}</span></p>${q.e ? `<p class="hint" lang="en">${esc(q.e)}</p>` : ''}`}
+  </article>`;
+}
+function renderResults(){
+  const s = session, items = s.items, N = items.length;
+  const right = items.filter(it=>it.picked===it.q.a), wrong = items.filter(it=>it.picked!==it.q.a);
+  const pct = Math.round(right.length/N*100);
+  const stars = pct>=90 ? 3 : pct>=70 ? 2 : pct>=40 ? 1 : 0;
+  const cheer = ['Không sao đâu, mình cùng ôn lại từ từ nha 🫶','Cố lên nha! Xem lại các câu sai rồi chơi lại nhé 🌱','Giỏi lắm! Ôn thêm mấy câu sai là chuẩn bài luôn ✨','Xuất sắc! Bé Mèo tự hào về bạn lắm 💖'][stars];
+  const isPlay = s.mode==='play';
+  app.innerHTML = `
+  <section class="result">
+    ${mascot(stars>=2 ? 'happy' : stars===1 ? 'idle' : 'sad', 120)}
+    <p class="stars" aria-label="${stars} trên 3 sao">${'<span>★</span>'.repeat(stars)}${'<span class="off">★</span>'.repeat(3-stars)}</p>
+    <p class="r-score">${isPlay ? `${num(s.score)} điểm` : `${right.length}/${N}`}</p>
+    <p class="r-sub">${esc(s.title)}: đúng ${right.length}/${N} câu (${pct}%). ${cheer}</p>
+    <div class="r-pills">
+      <span class="pill">✅ ${right.length} đúng</span><span class="pill">❌ ${wrong.length} sai</span>
+      ${isPlay ? `<span class="pill">🔥 Chuỗi dài nhất ${s.best}</span>` : `<span class="pill">⏱ ${fmt(s.used)}</span>`}
+    </div>
+    <div class="r-actions">
+      ${wrong.length ? `<button class="btn primary" data-act="retry">Chơi lại ${wrong.length} câu sai</button>` : ''}
+      ${isPlay ? `<button class="btn ${wrong.length?'soft':'primary'}" data-act="again">Chơi lại từ đầu</button>` : `<button class="btn ${wrong.length?'soft':'primary'}" data-act="exam">Thi thử lượt mới</button>`}
+      <button class="btn soft" data-act="home">Về trang chính</button>
+    </div>
+  </section>
+  ${wrong.length ? `<section class="review"><h2>Các câu cần xem lại 📌</h2>${wrong.map(reviewItem).join('')}</section>` : ''}
+  ${right.length ? `<details class="review-right"><summary>Xem ${right.length} câu trả lời đúng</summary>${right.map(reviewItem).join('')}</details>` : ''}`;
+  window.scrollTo(0,0);
+  if(stars>=2){ sound('win'); const sc = app.querySelector('.r-score'); if(sc) confetti(sc.getBoundingClientRect(), 30); }
+}
+
+/* ---------- custom questions ---------- */
+function parseCustom(text){
+  const blocks = text.replace(/\r/g,'').split(/\n[ \t]*\n+/).map(b=>b.trim()).filter(Boolean);
+  const qs = [], errs = [];
+  const names = chapterList().map(c=>c.t);
+  blocks.forEach((b, bi)=>{
+    const lines = b.split('\n').map(l=>l.trim()).filter(Boolean);
+    const qLines = [], opts = []; let ans = null, star = null, ex = '', topic = '', inEx = false;
+    for(const line of lines){
+      let m;
+      if((m = line.match(/^(?:answer|ans|key|đáp án|dap an)\s*[:：\-–]\s*\(?([A-Fa-f])\)?/i))){ ans = LETTERS.indexOf(m[1].toUpperCase()); inEx=false; continue; }
+      if((m = line.match(/^(?:explain|explanation|giải thích|giai thich)\s*[:：\-–]\s*(.*)$/i))){ ex = m[1]; inEx = true; continue; }
+      if((m = line.match(/^(?:topic|chủ đề|chu de)\s*[:：\-–]\s*(.*)$/i))){ topic = m[1].trim(); inEx=false; continue; }
+      if((m = line.match(/^(\*)?\s*\(?([A-Fa-f])\s*[\.\):]\s+(.+)$/))){
+        const idx = LETTERS.indexOf(m[2].toUpperCase());
+        if(idx === opts.length){
+          let txt = m[3].trim();
+          if(/\s*\*$/.test(txt)){ txt = txt.replace(/\s*\*$/,''); star = idx; }
+          if(m[1]) star = idx;
+          opts.push(txt); inEx=false; continue;
+        }
+      }
+      if(inEx) ex += ' ' + line;
+      else if(opts.length === 0) qLines.push(line.replace(/^(?:q|question|câu(?:\s*hỏi)?)\s*\d*\s*[:：\.\)]\s*/i,'').replace(/^\d+\s*[\.\):]\s+/,''));
+      else opts[opts.length-1] += ' ' + line;
+    }
+    const label = `Câu ${bi+1}:`;
+    const qText = qLines.join(' ').trim();
+    if(ans === null && star !== null) ans = star;
+    if(!qText){ errs.push(`${label} thiếu nội dung câu hỏi.`); return; }
+    if(opts.length < 2){ errs.push(`${label} cần ít nhất 2 lựa chọn (A., B., …).`); return; }
+    if(ans === null || ans < 0){ errs.push(`${label} thiếu đáp án (thêm dòng “Answer: B”).`); return; }
+    if(ans >= opts.length){ errs.push(`${label} đáp án ${LETTERS[ans]} không có trong các lựa chọn.`); return; }
+    const match = topic && names.find(t=>t.toLowerCase()===topic.toLowerCase());
+    qs.push({ id:'c'+Date.now().toString(36)+'_'+bi+'_'+Math.random().toString(36).slice(2,6), t: match || topic || CUSTOM_TOPIC, q:qText, o:opts, a:ans, e:ex.trim() });
+  });
+  return { qs, errs };
+}
+function addCustom(){
+  const ta = document.getElementById('customInput'), msg = document.getElementById('customMsg');
+  const text = ta.value;
+  if(!text.trim()){ msg.textContent = 'Dán ít nhất một câu hỏi vào ô trên.'; msg.className = 'msg err'; return; }
+  const { qs, errs } = parseCustom(text);
+  const seen = new Set(allQuestions().map(q=>q.q.trim().toLowerCase()));
+  const fresh = []; let dup = 0;
+  qs.forEach(q=>{ const k = q.q.trim().toLowerCase(); if(seen.has(k)){ dup++; return; } seen.add(k); fresh.push(q); });
+  if(state.custom.length + fresh.length > MAX_CUSTOM){ msg.textContent = `Tối đa ${MAX_CUSTOM} câu tự thêm. Hiện đã có ${state.custom.length} câu.`; msg.className = 'msg err'; return; }
+  let out = fresh.length ? `Đã thêm ${fresh.length} câu.` : 'Chưa thêm được câu nào.';
+  if(dup) out += ` Bỏ qua ${dup} câu trùng.`;
+  if(errs.length) out += ' ' + errs.slice(0,3).join(' ') + (errs.length>3 ? ` Còn ${errs.length-3} lỗi khác.` : '');
+  if(!fresh.length){ msg.textContent = out; msg.className = 'msg err'; return; }
+  state.custom = state.custom.concat(fresh); persist();
+  customOpen = true; customDraft = errs.length ? text : ''; customFlash = { text: out, ok: !errs.length };
+  renderHome(); customDraft = '';
+}
+
+/* ---------- events ---------- */
+app.addEventListener('click', e=>{
+  const el = e.target.closest('[data-act]'); if(!el || el.disabled) return;
+  const act = el.dataset.act;
+  switch(act){
+    case 'chapter': { const t = el.dataset.topic; const ch = chapterOf(t); startPlay(allQuestions().filter(q=>q.t===t), ch.name, t); break; }
+    case 'weak': startPlay(allQuestions().filter(q=>statusOf(q.id)==='weak'), 'Ôn lại câu sai', 'weak'); break;
+    case 'exam': startExam(); break;
+    case 'retry': startPlay(session.items.filter(it=>it.picked!==it.q.a).map(it=>it.q), 'Chơi lại câu sai', 'retry'); break;
+    case 'again': { const s = session; startPlay(s.items.map(it=>it.q), s.title, s.key); break; }
+    case 'home': renderHome(); break;
+    case 'pick': answer(Number(el.dataset.k)); break;
+    case 'next': next(); break;
+    case 'prev': prev(); break;
+    case 'jump': if(session && session.mode==='exam'){ session.i = Number(el.dataset.i); renderGame(true); } break;
+    case 'submit': {
+      const left = session.items.filter(x=>x.picked===null).length;
+      if(left && needsConfirm(el, 'submit', `Còn ${left} câu chưa làm. Bấm lần nữa để nộp`)) break;
+      submitExam(); break;
+    }
+    case 'exit': {
+      if(session && session.mode==='exam' && !session.done && needsConfirm(el, 'exit', 'Thoát?')) { el.setAttribute('aria-label','Bấm lần nữa để thoát, bài thi sẽ không được lưu'); break; }
+      renderHome(); break;
+    }
+    case 'toggle-timer': state.prefs.timer = !state.prefs.timer; persist(); el.setAttribute('aria-checked', state.prefs.timer); break;
+    case 'toggle-sound': state.prefs.sound = !state.prefs.sound; persist(); el.setAttribute('aria-checked', state.prefs.sound); if(state.prefs.sound) sound('tap'); break;
+    case 'sound-quick': state.prefs.sound = !state.prefs.sound; persist(); el.textContent = state.prefs.sound ? '🔊' : '🔇'; el.setAttribute('aria-label', state.prefs.sound ? 'Tắt âm thanh' : 'Bật âm thanh'); break;
+    case 'add-custom': addCustom(); break;
+    case 'clear-custom': {
+      if(needsConfirm(el, 'clear', 'Bấm lần nữa để xoá hết câu đã thêm')) break;
+      state.custom.forEach(q=>{ delete state.stats[q.id]; });
+      state.custom = []; persist(); customOpen = true; customFlash = { text:'Đã xoá các câu tự thêm.', ok:true }; renderHome(); break;
+    }
+    case 'reset': {
+      if(needsConfirm(el, 'reset', 'Bấm lần nữa để xoá toàn bộ tiến độ')) break;
+      state.stats = {}; persist(); renderHome(); break;
+    }
+  }
+});
+document.addEventListener('toggle', e=>{ if(e.target && e.target.id==='customBox') customOpen = e.target.open; }, true);
+document.addEventListener('keydown', e=>{
+  if(!session || session.done) return;
+  const tag = (e.target.tagName||'').toLowerCase();
+  if(tag==='textarea' || tag==='input') return;
+  if(e.metaKey || e.ctrlKey || e.altKey) return;
+  const it = cur();
+  let k = -1;
+  if(/^[1-6]$/.test(e.key)) k = Number(e.key)-1;
+  else if(/^[a-fA-F]$/.test(e.key)) k = 'abcdef'.indexOf(e.key.toLowerCase());
+  if(k>=0 && k<it.order.length){ e.preventDefault(); answer(k); return; }
+  if(e.key==='Enter'){ if(tag==='button') return; if(session.mode==='play' && it.picked!==null){ e.preventDefault(); next(); } return; }
+  if(e.key==='ArrowRight'){ if(session.mode==='exam' || it.picked!==null){ e.preventDefault(); next(); } return; }
+  if(e.key==='ArrowLeft' && session.mode==='exam'){ e.preventDefault(); prev(); }
+});
+
+renderHome();
+initCloud();
+})();
+</script>
+</body>
+</html>
